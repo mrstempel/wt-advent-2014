@@ -1,0 +1,40 @@
+﻿@{
+    Layout = null;
+	var cssClass = Convert.ToInt32(ViewBag.Points) > 0 ? "bonus" : string.Empty;
+}
+
+<script>
+	$(document).ready(function()
+	{
+		window.setTimeout("initVideo()", 1000);
+	});
+
+	function initVideo()
+	{
+		$('#video-placeholder').hide();
+		var videoSize = new Object();
+		videoSize.width = $('#video-content').innerWidth();
+		videoSize.height = Math.round(videoSize.width / video_aspect);
+		init_yt_player(videoSize, '9WLwn_eXPMQ', 'day9-video');
+	}
+
+	$(window).resize(function()
+	{
+		resizePlayer('day9-video');
+	});
+</script>
+
+<div class="modal-header">
+	<span class="btn-close" onclick="jQuery('#day9-video').tubeplayer('destroy');hideModal('more-info', @ViewBag.Points)"></span>
+</div>
+<div class="modal-body">
+	<article class="@cssClass">
+		<h1>@Translate("antwort9-headline")</h1>
+		<h2>@Translate("antwort9-text")</h2>
+		<div class="content" id="video-content">
+			<div class="video-container" id="day9-video"></div>
+		</div>
+		<div class="content-description">@Translate("antwort9-artikel-content-beschreibung")</div>
+	</article>
+	@Html.Partial("_MoreInfoFooter",null)
+</div>

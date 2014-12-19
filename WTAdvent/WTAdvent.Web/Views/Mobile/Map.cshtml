@@ -1,0 +1,152 @@
+﻿@using System.Configuration
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>WienTourismus - Snowie</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<script>
+			var mySnowieVersion = @LoggedUser.SnowieVersion;
+			var day = @ViewBag.Day;
+		</script>
+		<script src="~/Scripts/jquery-2.1.1.min.js"></script>
+		<script src="~/Scripts/jquery.ba-bbq.min.js"></script>
+		<script src="~/Scripts/jquery.easing.1.3.js"></script>
+		<script src="~/Scripts/Bootstrap/js/bootstrap.min.js"></script>
+		<link href="~/Scripts/Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+		<script src="~/Scripts/bootstrap-fullscreen-modal.min.js"></script>
+		<script src="~/Scripts/advent-utils.min.js"></script>
+		<script src="~/Scripts/advent-mobile-functions.min.js"></script>
+		<script src="~/Scripts/advent-api.min.js"></script>
+		<script src="~/Scripts/advent-forms.min.js"></script>
+		
+		<!-- video functions -->
+		<script src="~/Scripts/jQuery.tubeplayer.min.js"></script>
+		<script src="~/Scripts/advent-videos.min.js"></script>
+		
+		<!-- google mapinger -->
+		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&language=de&libraries=places,geometry" type="text/javascript"></script>
+		<script src="~/Scripts/infobubble-compiled.js" type="text/javascript"></script>
+		<script src="~/Scripts/advent-mobile-map.min.js" type="text/javascript"></script>
+		
+	
+		<link href="~/Css/normalize.min.css" rel="stylesheet" />
+		<link href="~/Css/WT_Melior.css" rel="stylesheet" />
+		<link href="~/Css/advent-mobile.min.css" rel="stylesheet" />
+		<link href="~/Css/advent-sprite.min.css" rel="stylesheet" />
+		
+		<script>
+			//global server vars
+			lng = '@Lng';
+			maxTryCount = @ConfigurationManager.AppSettings["Questions.MaxTry"];
+			var moreInfoBonusMsg = '@Html.Raw(Translate("frage-mehrinfo").Replace("&", "& <br/>"))';
+		</script>
+		
+		<script>
+			$(document).ready(function ()
+			{
+			});
+			google.maps.event.addDomListener(window, 'load', initMap);
+		</script>
+		<style>
+			.popover.top {
+				margin-top: -10px;
+				left: 15% !important;
+				}
+			.popover.top .arrow { display: none !important; }
+		</style>
+	</head>
+	<body>
+		<img src="HTTP://bs.serving-sys.com/Serving/ActivityServer.bs?cn=as&amp;ActivityID=568024&amp;Session=[SessionID]&amp;ns=1" id="media-px" width="1" height="1" style="display: none;"/>
+		<script>
+			(function (i, s, o, g, r, a, m)
+			{
+				i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function ()
+				{
+					(i[r].q = i[r].q || []).push(arguments)
+				}, i[r].l = 1 * new Date(); a = s.createElement(o),
+					m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+			})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+			ga('create', 'UA-9044067-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+		<script type="text/javascript">
+
+			var _gaq = _gaq || [];	
+			_gaq.push(['_setAccount', 'UA-9044067-1']);
+			_gaq.push(['_trackPageview']);
+
+			(function ()
+			{
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+
+		</script>
+		<div id="map-container"></div>
+		<div id="map-back-btn"><a href="/@Lng/Mobile/Advent?day=@ViewBag.Day"><img src="/Images/m/back.png" /></a></div>
+		<div id="map-feedback-container">
+			<div class="question-how-to" id="question-how-to2">
+				<span class="important">@Translate("frage-wronganswer")<a href="" class="btn-tipp" target="_blank">@Translate("frage-btn-tipp")</a><br/>@Translate("frage-tryagain")</span><br/>
+				<span >@Translate("frage-tryagain-info1")</span>
+			</div>
+			<div class="question-how-to" id="question-how-to3">
+				<span class="important">@Translate("frage-wronganswer")<a href="" class="btn-tipp" target="_blank">@Translate("frage-btn-tipp")</a><br/>@Translate("frage-tryagain")</span><br/>
+				<span >@Translate("frage-tryagain-info2")</span>
+			</div>
+			<div class="question-how-to" id="question-how-to4">
+				<span class="important">@Translate("frage-wronganswer")<br/>@Translate("antwort-daneben")</span>
+			</div>
+			<div class="question-how-to" id="question-how-to5">
+				<span class="important">@Translate("antwort-richtig")</span><br/>
+				<span class="important" id="answer-points"></span>
+			</div>
+		</div>
+	
+		<!-- modal windows -->
+		<div id="modal-more-info" class="modal hide fade modal-fullscreen" tabindex="-1"  aria-hidden="true"></div>
+	
+		<!-- content templates -->
+		<div id="drop-confirm" class="content-template">
+			<div class="bubble-content-container">
+				<div class="content">
+					<a href="javascript:void(0);" onclick="setMediaPixel('568029');_gaq.push(['_trackEvent', 'antwort-senden', 'clicked']);setAnswer();" class="link-btn full-width">@Translate("frage-btn-antwortsenden")</a>
+				</div>
+			</div>
+		</div>
+
+		<div id="answer-confirm" class="content-template">
+			<div class="bubble-content-container">
+				<div class="content more-info-btn" style="min-height: 50px;">
+					<a href="javascript:void(0);" onclick="setMediaPixel('568030');{more-info-link}" class="link-btn" style="font-size: 12px;padding:5px 10px;">{more-info-bonus-message}</a>
+				</div>
+			</div>
+		</div>
+		<div id="email-share-popover" style="z-index:900;"></div>
+		<div id="email-share-template" class="content-template">
+			<div id="email-share-headline">@Translate("share-mail-headline")</div>
+			<div id="email-share-form-container">
+				<div class="email-share-form">
+					<input type="text" id="email-share-name-template" placeholder="@Translate("share-mail-deinname")" /><br />
+					<input type="text" id="email-share-from-template" placeholder="@Translate("share-mail-deineemail")" /><br />
+					<input type="text" id="email-share-to-template" placeholder="@Translate("share-mail-emailempfaenger")" /><br />
+					<a href="javascript:void(0);" class="link-btn" style="width: 100%;" onclick="shareMail('{icon-id}')">@Translate("share-mail-btn")</a>
+				</div>
+				<div class="email-share-success">
+					@Translate("share-mail-danke")
+				</div>
+			</div>
+		</div>
+		<!-- /content templates -->
+	
+		<div id="loading-message">
+			<span>@Translate("status-loading")</span><span class="l-1"></span><span class="l-2"></span><span class="l-3"></span><span class="l-4"></span><span class="l-5"></span><span class="l-6"></span>
+		</div>
+	</body>
+</html>

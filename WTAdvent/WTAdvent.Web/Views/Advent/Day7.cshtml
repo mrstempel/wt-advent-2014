@@ -1,0 +1,19 @@
+﻿@{
+    Layout = null;
+	var cssClass = Convert.ToInt32(ViewBag.Points) > 0 ? "bonus" : string.Empty;
+}
+
+<div class="modal-header">
+	<span class="btn-close" onclick="hideModal('more-info', @ViewBag.Points)"></span>
+</div>
+<div class="modal-body">
+	<article class="@cssClass">
+		<h1>@Translate("antwort7-headline")</h1>
+		<h2>@Translate("antwort7-text")</h2>
+		<div class="content">
+			<iframe src="http://webtv.feratel.com/webtv/?&cam=5970&getLatest=1&pg=5EB12424-7C2D-428A-BEFF-0C9140CD772F&design=600p" height="540" style="width:600px;" scrolling="yes"></iframe>
+		</div>
+		<div class="content-description">@Translate("antwort7-artikel-content-beschreibung")</div>
+	</article>
+	@Html.Partial("_MoreInfoFooter",null)
+</div>

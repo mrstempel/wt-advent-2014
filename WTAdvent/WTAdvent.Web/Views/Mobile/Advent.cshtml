@@ -1,0 +1,58 @@
+﻿@model IEnumerable<WTAdvent.Core.Frontend.Models.UserQuestion>
+
+@{
+    ViewBag.Title = "AdventOverview";
+    Layout = "~/Views/Shared/_LayoutMobile.cshtml";
+	var currentDay = LocalDateTime.Day > 24 ? 24 : LocalDateTime.Day;
+	if (ViewBag.Day != null && Convert.ToInt32(ViewBag.Day) > 0)
+	{
+		currentDay = Convert.ToInt32(ViewBag.Day);
+	}
+	var openQuestions = Model.Where(m => m.IsAnswered == false);
+	var daysLeft = 24 - DateTime.Now.Day;
+	var subHeadline = (daysLeft > 0) ? "<br/><span>" + string.Format(Translate("tage-bis2"), "</span>" + daysLeft + "<span>") + "</span>" : string.Empty;
+	var frage2Index = IsCompetitionExpired ? "frage-info2new" : "frage-info2";
+}
+
+<div class="page-container advent">
+	@if (!IsCompetitionExpired)
+	{
+		<h1>@Translate("subline")@Html.Raw(subHeadline)</h1>
+	}
+	else
+	{
+		<h1>@Translate("subline")</h1>
+	}
+	<section class="current-question">
+		<h3>@Translate("tag" + currentDay)</h3>
+		@if (Model.FirstOrDefault(m => m.Question.Day == currentDay && m.IsAnswered) != null)
+		{
+			<div class="center-content">
+				<span>@Translate(frage2Index)</span>
+				<a href="/@Lng/Mobile/Map" class="link-btn full-width" style="margin: 10px 0 0 0;">@Translate("zur-karte")</a>
+			</div>
+		}
+		else
+		{
+			<h2>@Translate("frage" + currentDay)</h2>
+			<div class="center-content">
+				<span>@Translate("frage-anweisung1")</span><br/>
+				@Translate("frage-info1")<br/>
+				<a href="javascript:void(0);" onclick="goToMap(@currentDay);"><img src="/Images/eumel/dragger-rot-@(@LoggedUser.SnowieVersion).png"/></a>
+				<a href="javascript:void(0);" onclick="goToMap(@currentDay);" class="link-btn full-width">@Translate("btn-losgehts")</a>
+			</div>
+		}
+	</section>
+	@if (openQuestions.Any())
+	{
+		<section>
+			<h3>@Translate("offene-fragen")</h3>
+			<div class="center-content">
+				@foreach (var q in openQuestions)
+				{
+					<a class="open-question" href="/@Lng/Mobile/Advent?day=@q.Question.Day" title="@q.Question.Day"><img src="/Images/eumel/@(@q.Question.Day).png"/></a>
+				}
+			</div>
+		</section>
+	}
+</div>

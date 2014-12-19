@@ -1,0 +1,794 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{75C9A2E2-A773-4AED-9CAA-5DE4E1691EDF}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WTAdvent.Web</RootNamespace>
+    <AssemblyName>WTAdvent.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.28\lib\net45\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.30506.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.28\lib\net45\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20715.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="WebMatrix.WebData, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\AdventController.cs" />
+    <Compile Include="Controllers\GameController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MobileController.cs" />
+    <Compile Include="Controllers\PopupController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="agent.html" />
+    <Content Include="App_Data\wurfl.xml" />
+    <Content Include="Content\16\1.png" />
+    <Content Include="Content\16\2.png" />
+    <Content Include="Content\16\3.png" />
+    <Content Include="Content\19\1.png" />
+    <Content Include="Content\19\2.png" />
+    <Content Include="Content\19\3.png" />
+    <Content Include="Content\23\1.png" />
+    <Content Include="Content\23\2.png" />
+    <Content Include="Content\23\3.png" />
+    <Content Include="Content\2\1.png" />
+    <Content Include="Content\2\2.png" />
+    <Content Include="Content\2\3.png" />
+    <Content Include="Content\2\4.png" />
+    <Content Include="Content\2\5.png" />
+    <Content Include="Content\5\1.png" />
+    <Content Include="Content\5\2.png" />
+    <Content Include="Content\Templates\Email.html" />
+    <Content Include="Css\advent-mobile.css">
+      <DependentUpon>advent-mobile.scss</DependentUpon>
+    </Content>
+    <Content Include="Css\advent-mobile.min.css" />
+    <Content Include="Css\advent-sprite.css">
+      <DependentUpon>advent-sprite.scss</DependentUpon>
+    </Content>
+    <Content Include="Css\advent-sprite.min.css" />
+    <Content Include="Css\advent.css">
+      <DependentUpon>advent.scss</DependentUpon>
+    </Content>
+    <Content Include="Css\advent.min.css" />
+    <Content Include="Css\memory-mobile-ie.css" />
+    <Content Include="Css\memory-ie.css" />
+    <Content Include="Css\memory-ie.min.css">
+      <DependentUpon>memory-ie.css</DependentUpon>
+    </Content>
+    <Content Include="Css\memory-mobile-ie.min.css">
+      <DependentUpon>memory-mobile-ie.css</DependentUpon>
+    </Content>
+    <Content Include="Css\memory-mobile.css" />
+    <Content Include="Css\memory-mobile.min.css">
+      <DependentUpon>memory-mobile.css</DependentUpon>
+    </Content>
+    <Content Include="Css\memory.css" />
+    <Content Include="Css\jquery.bxslider.css" />
+    <Content Include="Css\memory.min.css">
+      <DependentUpon>memory.css</DependentUpon>
+    </Content>
+    <Content Include="Images\blank.png" />
+    <Content Include="Images\btn-close.png" />
+    <Content Include="Images\dropdown_arrow.png" />
+    <Content Include="Images\eumel-correct.png" />
+    <Content Include="Images\eumel\1.png" />
+    <Content Include="Images\eumel\10.png" />
+    <Content Include="Images\eumel\11.png" />
+    <Content Include="Images\eumel\12.png" />
+    <Content Include="Images\eumel\13.png" />
+    <Content Include="Images\eumel\14.png" />
+    <Content Include="Images\eumel\15.png" />
+    <Content Include="Images\eumel\16.png" />
+    <Content Include="Images\eumel\17.png" />
+    <Content Include="Images\eumel\18.png" />
+    <Content Include="Images\eumel\19.png" />
+    <Content Include="Images\eumel\2.png" />
+    <Content Include="Images\eumel\20.png" />
+    <Content Include="Images\eumel\21.png" />
+    <Content Include="Images\eumel\22.png" />
+    <Content Include="Images\eumel\23.png" />
+    <Content Include="Images\eumel\24.png" />
+    <Content Include="Images\eumel\3.png" />
+    <Content Include="Images\eumel\4.png" />
+    <Content Include="Images\eumel\5.png" />
+    <Content Include="Images\eumel\6.png" />
+    <Content Include="Images\eumel\7.png" />
+    <Content Include="Images\eumel\8.png" />
+    <Content Include="Images\eumel\9.png" />
+    <Content Include="Images\eumel\dragger-grau.png" />
+    <Content Include="Images\eumel\dragger-rot-1-small.png" />
+    <Content Include="Images\eumel\dragger-rot-1.png" />
+    <Content Include="Images\eumel\dragger-rot-2-small.png" />
+    <Content Include="Images\eumel\dragger-rot-2.png" />
+    <Content Include="Images\eumel\dragger-rot-3-small.png" />
+    <Content Include="Images\eumel\dragger-rot-3.png" />
+    <Content Include="Images\eumel\dragger-rot-4-small.png" />
+    <Content Include="Images\eumel\dragger-rot-4.png" />
+    <Content Include="Images\eumel\dragger-rot.png" />
+    <Content Include="Images\fb-btn-bg.png" />
+    <Content Include="Images\fb-login-btn.png" />
+    <Content Include="Images\intro-buchen.png" />
+    <Content Include="Images\intro-content.png" />
+    <Content Include="Images\intro-shapes.png" />
+    <Content Include="Images\Memory\13\01.jpg" />
+    <Content Include="Images\Memory\13\02.jpg" />
+    <Content Include="Images\Memory\13\03.jpg" />
+    <Content Include="Images\Memory\13\04.jpg" />
+    <Content Include="Images\Memory\22\01.jpg" />
+    <Content Include="Images\Memory\22\02.jpg" />
+    <Content Include="Images\Memory\22\03.jpg" />
+    <Content Include="Images\Memory\22\04.jpg" />
+    <Content Include="Images\Memory\4\01.jpg" />
+    <Content Include="Images\Memory\4\02.jpg" />
+    <Content Include="Images\Memory\4\03.jpg" />
+    <Content Include="Images\Memory\4\04.jpg" />
+    <Content Include="Images\Memory\6\01.jpg" />
+    <Content Include="Images\Memory\6\02.jpg" />
+    <Content Include="Images\Memory\6\03.jpg" />
+    <Content Include="Images\Memory\6\04.jpg" />
+    <Content Include="Images\Memory\back.jpg" />
+    <Content Include="Images\m\back.png" />
+    <Content Include="Images\m\menue.png" />
+    <Content Include="Images\m\snowie-logo.png" />
+    <Content Include="Images\paging-next.png" />
+    <Content Include="Images\paging-prev.png" />
+    <Content Include="Images\placeholder.gif" />
+    <Content Include="Images\sample-content.png" />
+    <Content Include="Images\shape1.png" />
+    <Content Include="Images\shape2.png" />
+    <Content Include="Images\share\share-1.png" />
+    <Content Include="Images\share\share-14.png" />
+    <Content Include="Images\share\share-15.png" />
+    <Content Include="Images\share\share-2.png" />
+    <Content Include="Images\share\share-20.png" />
+    <Content Include="Images\share\share-21.png" />
+    <Content Include="Images\share\share-22.png" />
+    <Content Include="Images\share\share-23.png" />
+    <Content Include="Images\share\share-24.png" />
+    <Content Include="Images\share\share-3.png" />
+    <Content Include="Images\share\share-4.png" />
+    <Content Include="Images\share\share-5.png" />
+    <Content Include="Images\share\share-6.png" />
+    <Content Include="Images\share\share-7.png" />
+    <Content Include="Images\share\share-8.png" />
+    <Content Include="Images\share\share-9.png" />
+    <Content Include="Images\share\share-10.png" />
+    <Content Include="Images\share\share-11.png" />
+    <Content Include="Images\share\share-12.png" />
+    <Content Include="Images\share\share-13.png" />
+    <Content Include="Images\share\share-16.png" />
+    <Content Include="Images\share\share-17.png" />
+    <Content Include="Images\share\share-18.png" />
+    <Content Include="Images\share\share-19.png" />
+    <Content Include="Images\share\share-allgemein.png" />
+    <Content Include="Images\share\share-allgemein1-de.png" />
+    <Content Include="Images\share\share-allgemein1-en.png" />
+    <Content Include="Images\share\share-allgemein1-es.png" />
+    <Content Include="Images\share\share-allgemein1-fr.png" />
+    <Content Include="Images\share\share-allgemein1-it.png" />
+    <Content Include="Images\share\share-kugel.png" />
+    <Content Include="Images\share_email_large.png" />
+    <Content Include="Images\share_fb_large.png" />
+    <Content Include="Images\share_google_large.png" />
+    <Content Include="Images\share_twitter_large.png" />
+    <Content Include="Images\sprite-v1.0.png" />
+    <Content Include="Scripts\advent-facebook.js" />
+    <Content Include="Scripts\advent-facebook.min.js">
+      <DependentUpon>advent-facebook.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\advent-mobile-functions.min.js">
+      <DependentUpon>advent-mobile-functions.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\advent-mobile-map.min.js">
+      <DependentUpon>advent-mobile-map.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Bootstrap\css\bootstrap.css" />
+    <Content Include="Scripts\Bootstrap\css\bootstrap.min.css" />
+    <Content Include="Scripts\Bootstrap\img\glyphicons-halflings-white.png" />
+    <Content Include="Scripts\Bootstrap\img\glyphicons-halflings.png" />
+    <Content Include="Scripts\Bootstrap\js\bootstrap.js" />
+    <Content Include="Scripts\Bootstrap\js\bootstrap.min.js" />
+    <Content Include="Css\normalize.css" />
+    <Content Include="Css\normalize.min.css">
+      <DependentUpon>normalize.css</DependentUpon>
+    </Content>
+    <Content Include="Css\WT_Melior.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\logo.png" />
+    <Content Include="Images\eumel-question.png" />
+    <Content Include="Images\share_email.png" />
+    <Content Include="Images\share_fb.png" />
+    <Content Include="Images\share_twitter.png" />
+    <Content Include="Scripts\advent-api.js" />
+    <Content Include="Scripts\advent-api.min.js">
+      <DependentUpon>advent-api.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\advent-forms.js" />
+    <Content Include="Scripts\advent-forms.min.js">
+      <DependentUpon>advent-forms.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\advent-functions.js" />
+    <Content Include="Scripts\advent-functions.min.js">
+      <DependentUpon>advent-functions.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\advent-map.min.js">
+      <DependentUpon>advent-map.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\advent-map.min.js.map">
+      <DependentUpon>advent-map.js</DependentUpon>
+    </Content>
+    <Content Include="Css\advent.scss" />
+    <Content Include="Scripts\advent-utils.min.js">
+      <DependentUpon>advent-utils.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\advent-utils.min.js.map">
+      <DependentUpon>advent-utils.js</DependentUpon>
+    </Content>
+    <Content Include="Css\webfonts\2BFFD6_0_0.eot" />
+    <Content Include="Css\webfonts\2BFFD6_0_0.ttf" />
+    <Content Include="Css\webfonts\2BFFD6_0_0.woff" />
+    <Content Include="Css\webfonts\2BFFD6_1_0.eot" />
+    <Content Include="Css\webfonts\2BFFD6_1_0.ttf" />
+    <Content Include="Css\webfonts\2BFFD6_1_0.woff" />
+    <Content Include="Css\webfonts\2BFFD6_2_0.eot" />
+    <Content Include="Css\webfonts\2BFFD6_2_0.ttf" />
+    <Content Include="Css\webfonts\2BFFD6_2_0.woff" />
+    <Content Include="Css\webfonts\2BFFD6_3_0.eot" />
+    <Content Include="Css\webfonts\2BFFD6_3_0.ttf" />
+    <Content Include="Css\webfonts\2BFFD6_3_0.woff" />
+    <Content Include="Scripts\advent-functions.min.js.map">
+      <DependentUpon>advent-functions.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\advent-api.min.js.map">
+      <DependentUpon>advent-api.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\advent-videos.min.js">
+      <DependentUpon>advent-videos.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\advent-videos.min.js.map">
+      <DependentUpon>advent-videos.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\advent-forms.min.js.map">
+      <DependentUpon>advent-forms.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Bootstrap\img\Thumbs.db" />
+    <Content Include="Css\advent-sprite.scss" />
+    <Content Include="Css\advent-mobile.scss" />
+    <None Include="Properties\PublishProfiles\snowie - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\snowie - Web Deploy.pubxml" />
+    <Content Include="Scripts\advent-facebook.min.js.map">
+      <DependentUpon>advent-facebook.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\advent-mobile-functions.min.js.map">
+      <DependentUpon>advent-mobile-functions.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\advent-mobile-map.min.js.map">
+      <DependentUpon>advent-mobile-map.js</DependentUpon>
+    </Content>
+    <None Include="Scripts\jquery-2.1.1.intellisense.js" />
+    <Content Include="Scripts\advent-map.js" />
+    <Content Include="Scripts\advent-utils.js" />
+    <Content Include="Scripts\advent-videos.js" />
+    <Content Include="Scripts\bootstrap-fullscreen-modal.min.js" />
+    <Content Include="Scripts\advent-mobile-functions.js" />
+    <Content Include="Scripts\advent-mobile-map.js" />
+    <Content Include="Scripts\infobubble-compiled.js" />
+    <Content Include="Scripts\jquery-2.1.1.js" />
+    <Content Include="Scripts\jquery-2.1.1.min.js" />
+    <Content Include="Scripts\jquery.ba-bbq.min.js" />
+    <Content Include="Scripts\jquery.bxslider.min.js" />
+    <Content Include="Scripts\jquery.easing.1.3.js" />
+    <Content Include="Scripts\jQuery.tubeplayer.min.js" />
+    <Content Include="Scripts\Memory\angular.js" />
+    <Content Include="Scripts\Memory\angular.min.js">
+      <DependentUpon>angular.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Memory\app.js" />
+    <Content Include="Scripts\Memory\app.min.js">
+      <DependentUpon>app.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Memory\game.js" />
+    <Content Include="Scripts\Memory\game.min.js">
+      <DependentUpon>game.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\prototype.js" />
+    <Content Include="Scripts\prototype.min.js">
+      <DependentUpon>prototype.js</DependentUpon>
+    </Content>
+    <Content Include="snow3d\examples\css\normalize.css" />
+    <Content Include="snow3d\examples\css\normalize.min.css" />
+    <Content Include="snow3d\examples\index.html" />
+    <Content Include="snow3d\examples\js\vendor\html5shiv.js" />
+    <Content Include="snow3d\examples\js\vendor\jquery-1.11.0.min.js" />
+    <Content Include="snow3d\examples\online-example-link.txt" />
+    <Content Include="snow3d\snow-3d\flakes\flake-1-red.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake-1.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake-2-red.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake-2.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake-3-red.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake-3.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake-4-red.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake-4.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake0.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake1.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake10.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake100.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake101.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake102.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake103.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake104.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake105.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake106.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake107.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake108.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake109.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake11.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake110.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake111.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake112.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake113.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake114.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake115.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake116.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake117.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake118.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake119.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake12.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake120.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake121.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake122.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake123.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake124.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake125.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake126.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake127.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake128.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake129.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake13.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake130.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake131.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake132.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake133.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake134.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake135.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake136.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake137.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake138.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake139.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake14.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake140.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake141.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake142.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake143.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake144.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake145.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake146.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake147.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake148.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake149.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake15.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake150.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake151.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake152.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake153.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake154.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake155.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake156.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake157.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake158.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake159.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake16.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake160.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake161.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake162.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake163.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake164.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake165.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake166.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake167.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake168.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake169.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake17.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake170.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake171.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake172.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake173.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake174.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake175.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake176.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake177.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake178.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake179.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake18.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake180.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake181.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake182.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake183.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake184.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake185.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake186.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake187.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake188.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake189.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake19.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake190.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake191.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake192.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake193.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake194.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake195.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake196.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake197.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake198.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake199.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake2.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake20.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake200.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake21.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake22.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake23.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake24.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake25.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake26.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake27.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake28.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake29.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake3.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake30.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake31.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake32.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake33.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake34.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake35.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake36.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake37.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake38.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake39.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake4.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake40.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake41.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake42.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake43.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake44.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake45.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake46.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake47.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake48.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake49.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake5.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake50.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake51.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake52.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake53.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake54.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake55.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake56.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake57.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake58.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake59.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake6.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake60.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake61.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake62.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake63.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake64.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake65.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake66.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake67.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake68.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake69.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake7.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake70.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake71.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake72.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake73.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake74.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake75.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake76.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake77.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake78.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake79.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake8.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake80.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake81.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake82.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake83.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake84.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake85.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake86.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake87.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake88.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake89.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake9.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake90.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake91.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake92.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake93.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake94.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake95.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake96.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake97.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake98.png" />
+    <Content Include="snow3d\snow-3d\flakes\flake99.png" />
+    <Content Include="snow3d\snow-3d\snow-3d-vendor.min.js" />
+    <Content Include="snow3d\snow-3d\snow-3d.min.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Scripts\jquery-2.1.1.min.map" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\prototype.min.js.map">
+      <DependentUpon>prototype.js</DependentUpon>
+    </Content>
+    <Content Include="Views\Popup\Intro.cshtml" />
+    <Content Include="Views\Popup\Register.cshtml" />
+    <Content Include="Views\Shared\_LayoutIFrame.cshtml" />
+    <Content Include="Views\Popup\MySnowie.cshtml" />
+    <Content Include="Views\Popup\MyPoints.cshtml" />
+    <Content Include="Views\Popup\Webcam.cshtml" />
+    <Content Include="Views\Popup\Hashtag.cshtml" />
+    <Content Include="Views\Popup\Teilnahmebedingungen.cshtml" />
+    <Content Include="Views\Advent\Day1.cshtml" />
+    <Content Include="Views\Advent\Day2.cshtml" />
+    <Content Include="Views\Advent\Day3.cshtml" />
+    <Content Include="Views\Advent\Day4.cshtml" />
+    <Content Include="Views\Advent\Day5.cshtml" />
+    <Content Include="Views\Advent\Day7.cshtml" />
+    <Content Include="Views\Advent\Day8.cshtml" />
+    <Content Include="Views\Advent\Day9.cshtml" />
+    <Content Include="Views\Advent\Day10.cshtml" />
+    <Content Include="Views\Advent\Day11.cshtml" />
+    <Content Include="Views\Advent\Day12.cshtml" />
+    <Content Include="Views\Advent\Day13.cshtml" />
+    <Content Include="Views\Advent\Day14.cshtml" />
+    <Content Include="Views\Advent\Day15.cshtml" />
+    <Content Include="Views\Advent\Day16.cshtml" />
+    <Content Include="Views\Advent\Day17.cshtml" />
+    <Content Include="Views\Advent\Day18.cshtml" />
+    <Content Include="Views\Advent\Day19.cshtml" />
+    <Content Include="Views\Advent\Day20.cshtml" />
+    <Content Include="Views\Advent\Day21.cshtml" />
+    <Content Include="Views\Advent\Day22.cshtml" />
+    <Content Include="Views\Advent\Day23.cshtml" />
+    <Content Include="Views\Advent\Day24.cshtml" />
+    <Content Include="Views\Advent\Memory.cshtml" />
+    <Content Include="Scripts\Memory\angular.min.js.map">
+      <DependentUpon>angular.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Memory\app.min.js.map">
+      <DependentUpon>app.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Memory\game.min.js.map">
+      <DependentUpon>game.js</DependentUpon>
+    </Content>
+    <Content Include="Views\Shared\_MoreInfoFooter.cshtml" />
+    <Content Include="Views\Advent\Day6.cshtml" />
+    <Content Include="Views\Shared\Partial\CountrieSelectEn.cshtml" />
+    <Content Include="Views\Shared\Partial\CountrieSelectDe.cshtml" />
+    <Content Include="Views\Shared\_LayoutMobile.cshtml" />
+    <Content Include="Views\Mobile\Index.cshtml" />
+    <Content Include="Views\Mobile\Register.cshtml" />
+    <Content Include="Views\Mobile\Advent.cshtml" />
+    <Content Include="Views\Mobile\MySnowie.cshtml" />
+    <Content Include="Views\Mobile\MyPoints.cshtml" />
+    <Content Include="Views\Mobile\Hashtag.cshtml" />
+    <Content Include="Views\Mobile\Webcam.cshtml" />
+    <Content Include="Views\Mobile\Map.cshtml" />
+    <Content Include="Views\Mobile\Days\Day1.cshtml" />
+    <Content Include="Views\Mobile\Days\Day10.cshtml" />
+    <Content Include="Views\Mobile\Days\Day11.cshtml" />
+    <Content Include="Views\Mobile\Days\Day12.cshtml" />
+    <Content Include="Views\Mobile\Days\Day13.cshtml" />
+    <Content Include="Views\Mobile\Days\Day14.cshtml" />
+    <Content Include="Views\Mobile\Days\Day15.cshtml" />
+    <Content Include="Views\Mobile\Days\Day16.cshtml" />
+    <Content Include="Views\Mobile\Days\Day17.cshtml" />
+    <Content Include="Views\Mobile\Days\Day18.cshtml" />
+    <Content Include="Views\Mobile\Days\Day19.cshtml" />
+    <Content Include="Views\Mobile\Days\Day2.cshtml" />
+    <Content Include="Views\Mobile\Days\Day20.cshtml" />
+    <Content Include="Views\Mobile\Days\Day21.cshtml" />
+    <Content Include="Views\Mobile\Days\Day22.cshtml" />
+    <Content Include="Views\Mobile\Days\Day23.cshtml" />
+    <Content Include="Views\Mobile\Days\Day24.cshtml" />
+    <Content Include="Views\Mobile\Days\Day3.cshtml" />
+    <Content Include="Views\Mobile\Days\Day4.cshtml" />
+    <Content Include="Views\Mobile\Days\Day5.cshtml" />
+    <Content Include="Views\Mobile\Days\Day6.cshtml" />
+    <Content Include="Views\Mobile\Days\Day7.cshtml" />
+    <Content Include="Views\Mobile\Days\Day8.cshtml" />
+    <Content Include="Views\Mobile\Days\Day9.cshtml" />
+    <Content Include="Views\Mobile\Memory.cshtml" />
+    <Content Include="snow3d\examples\css\desktop.ini" />
+    <Content Include="snow3d\examples\desktop.ini" />
+    <Content Include="snow3d\examples\js\desktop.ini" />
+    <Content Include="snow3d\examples\js\vendor\desktop.ini" />
+    <Content Include="snow3d\snow-3d\desktop.ini" />
+    <Content Include="snow3d\snow-3d\flakes\desktop.ini" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KwIt.Project.Pattern\KwIt.Project.Pattern.csproj">
+      <Project>{b11cecc4-7760-4c38-a0f4-a23eb760e8e9}</Project>
+      <Name>KwIt.Project.Pattern</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WTAdvent.Core\WTAdvent.Core.csproj">
+      <Project>{44f14ec6-63a2-49ae-b591-6c5e0cdfdc0c}</Project>
+      <Name>WTAdvent.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:3036/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

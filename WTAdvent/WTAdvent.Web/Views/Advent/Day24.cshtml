@@ -1,0 +1,41 @@
+﻿@{
+    Layout = null;
+	var cssClass = Convert.ToInt32(ViewBag.Points) > 0 ? "bonus" : string.Empty;
+}
+
+<script>
+	$(document).ready(function()
+	{
+		initVideo();
+	});
+
+	function initVideo()
+	{
+		$('#video-placeholder').hide();
+		var videoSize = new Object();
+		videoSize.width = $('#video-placeholder').innerWidth();
+		videoSize.height = Math.round(videoSize.width / video_aspect);
+		init_yt_playerAutoPlay(videoSize, 'pDya8S3g5lE', 'day24-video');
+	}
+
+	$(window).resize(function()
+	{
+		resizePlayer('day24-video');
+	});
+</script>
+
+<div class="modal-header">
+	<span class="btn-close" onclick="jQuery('#day24-video').tubeplayer('destroy');hideModal('more-info', @ViewBag.Points)"></span>
+</div>
+<div class="modal-body">
+	<article class="@cssClass">
+		<h1>@Translate("antwort24-headline")</h1>
+		<h2>@Translate("antwort24-text")</h2>
+		<div class="content" id="video-content">
+			<img src="/Images/placeholder.gif" style="width:855px;height:481px;" id="video-placeholder"/>
+			<div class="video-container" id="day24-video"></div>
+		</div>
+		<div class="content-description">@Translate("antwort24-artikel-content-beschreibung")</div>
+	</article>
+	@Html.Partial("_MoreInfoFooter",null)
+</div>

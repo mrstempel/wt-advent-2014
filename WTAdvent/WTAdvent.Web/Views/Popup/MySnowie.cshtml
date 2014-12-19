@@ -1,0 +1,123 @@
+﻿@model WTAdvent.Core.DAL.Models.User
+
+<script>
+	var maxSnowieVersions = 1;
+	var currentSnowieVersion = @Model.SnowieVersion;
+	var clickSem = false;
+	$(document).ready(function()
+	{
+		initForms();
+		maxSnowieVersions = $('.snowie-version').length;
+
+		// show correct snowie
+		$('.snowie-version').removeClass('active');
+		$('#snowie-@Model.SnowieVersion').addClass('active');
+
+		// set checkboxes and radio buttons
+		@if (Model.Sex == "M")
+		{
+			<text>$('#sex-m').attr('checked', 'checked')</text>	
+		}
+		else
+		{
+			<text>$('#sex-f').attr('checked', 'checked')</text>	
+		}
+
+		@if (Model.HasNewsletter)
+		{
+			<text>$('#HasNewsletter').attr('checked', 'checked')</text>
+		}
+
+		@if (Model.HasDailyReminder)
+		{
+			<text>$('#HasDailyReminder').attr('checked', 'checked')</text>
+		}
+
+		$('.prev').click(function()
+		{
+			if (!clickSem)
+			{
+				clickSem = true;
+				var prev = (currentSnowieVersion == 1) ? maxSnowieVersions : currentSnowieVersion - 1;
+				$('#snowie-' + currentSnowieVersion).fadeOut('fast', function()
+				{
+					$('#snowie-' + prev).fadeIn('fast').css("display", "inline-block");
+					currentSnowieVersion = prev;
+					$('#SnowieVersion').val(currentSnowieVersion);
+					clickSem = false;
+				});
+			}
+		});
+
+		$('.next').click(function()
+		{
+			if (!clickSem)
+			{
+				clickSem = true;
+				var next = (currentSnowieVersion == maxSnowieVersions) ? 1 : currentSnowieVersion + 1;
+				$('#snowie-' + currentSnowieVersion).fadeOut('fast', function()
+				{
+					$('#snowie-' + next).fadeIn('fast').css("display", "inline-block");
+					currentSnowieVersion = next;
+					$('#SnowieVersion').val(currentSnowieVersion);
+					clickSem = false;
+				});
+			}
+		});
+	});
+</script>
+
+<div class="modal-header">
+	<span class="btn-close" onclick="hideModal('sidebar', 0)"></span>
+</div>
+<div class="modal-body">
+	<article>
+		<h1>@Translate("snowie-headline")</h1>
+		<h2>@Translate("tooltip-snowie-description")</h2>
+		<div class="content">
+			 <div class="msg-container" id="msg-container-success">
+				<div id="msg-success" class="msg success"><p>@Translate("daten-gespeichert")</p></div>
+			</div>
+			<form>
+				@Html.HiddenFor(m => m.SnowieVersion)
+				<div class="intro-container">
+					<div class="slider-item">
+						<div class="content-container">
+							<div class="left">
+								<h2>@Translate("snowie-subheadline1")</h2>
+								<div class="shape-container">
+									<a href="javascript:void(0);" id="shape-prev" class="prev"><img src="/Images/paging-prev.png" alt=""/></a>
+									<a href="javascript:void(0);" id="shape-next" class="next"><img src="/Images/paging-next.png" alt=""/></a>
+									<span class="sprite snowie-version active" id="snowie-1"></span>
+									<span class="sprite snowie-version" id="snowie-2"></span>
+									<span class="sprite snowie-version" id="snowie-3"></span>
+									<span class="sprite snowie-version" id="snowie-4"></span>
+								</div>
+							</div><div class="right">
+								      <h2>@Translate("snowie-subheadline2")</h2>
+								      <div class="msg-container" id="msg-container">
+									      <div id="msg-error" class="msg error"><p>Ein unerwateter Fehler ist aufgetreten. Bitte versuche es erneut.</p></div>
+								      </div>
+								      <div class="field-container">
+									      <input type="radio" name="Sex" value="M" id="sex-m"/><label for="sex-m" class="radio">@Translate("anrede-herr")</label>
+									      <input type="radio" name="Sex" value="F" id="sex-f"/><label for="sex-f" class="radio">@Translate("anrede-frau")</label>
+								      </div>
+								      <div class="field-container">
+									      @Html.TextBoxFor(m => m.Firstname, new { @placeholder = Translate("person-vorname"), @class = "mandatory" })
+									      @Html.TextBoxFor(m => m.Surname, new { @placeholder = Translate("person-nachname"), @class = "mandatory" })
+									      @Html.TextBoxFor(m => m.Email, new { @placeholder = Translate("person-email"), @class = "mandatory" })
+									      @*<div class="checkbox-container"><input type="checkbox" name="HasNewsletter" id="HasNewsletter" /><label for="HasNewsletter" class="radio" style="width:85%;">@Translate("person-newsletter")</label></div>*@
+								      </div>
+							      </div>
+							<div class="full-width register">
+								<a href="javascript:void(0);" class="link-btn" onclick="userUpdate();" style="width:70%">@Translate("btn-aendern")</a>
+								<span>@Translate("option")</span>
+								<a href="javascript:void(0);" class="link-btn" onclick="logout();" style="width:70%">@Translate("btn-logout")</a>
+							</div>
+						</div>			
+					</div>
+				</div>
+			</form>
+		</div>
+	</article>
+</div>

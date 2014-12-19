@@ -1,0 +1,24 @@
+﻿@model WTAdvent.Core.Frontend.Models.FanwallContainer
+
+<div class="modal-header">
+	<span class="btn-close" onclick="hideModal('sidebar', 0)"></span>
+</div>
+<div class="modal-body">
+	<article>
+		<h1>@Translate("hashtag-headline")</h1>
+		<h2>@Translate("hashtag-subheadline1")</h2>
+		<div class="content">
+			<div id="fanwall">
+				@foreach (var item in Model.Items)
+				{
+					<a href="@item.Link" target="_blank"><img src="@item.ThumbnailUrl"/></a>
+				}
+			</div>
+			<div id="fanwall-bottom">
+				<div id="hashtags-loading" style="margin: 10px 0 0 0;display:none;">loading...</div>
+				<input type="hidden" id="hashtags-nexturl" value="@Model.NextUrl"/>
+				<a id="hashtags-more-btn" href="javascript:void(0);" onclick="loadMoreHashtags();" class="link-btn" style="margin: 10px 0 0 0;">@Translate("mehr-laden")</a>
+			</div>
+		</div>
+	</article>
+</div>

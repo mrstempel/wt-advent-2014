@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{44F14EC6-63A2-49AE-B591-6C5E0CDFDC0C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WTAdvent.Core</RootNamespace>
+    <AssemblyName>WTAdvent.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="LinqToTwitter, Version=2.1.11.0, Culture=neutral, PublicKeyToken=957107be965c25d9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\LinqToTwitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="MoreLinq, Version=1.0.16006.0, Culture=neutral, PublicKeyToken=384d532d7e88985d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\MoreLinq.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DAL\Context\WTAdventContext.cs" />
+    <Compile Include="DAL\Library\ISeeder.cs" />
+    <Compile Include="DAL\Migrations\BaseSeeder.cs" />
+    <Compile Include="DAL\Migrations\UpdateQuestionToleranceSeeder.cs" />
+    <Compile Include="DAL\Migrations\UpdateQuestionZoomSeeder.cs" />
+    <Compile Include="DAL\Migrations\UpdateBonusSeeder.cs" />
+    <Compile Include="DAL\Migrations\UpdateQuestionSeeder.cs" />
+    <Compile Include="DAL\Migrations\TestQuestionSeeder.cs" />
+    <Compile Include="DAL\Migrations\InitialSeeder.cs" />
+    <Compile Include="DAL\Migrations\WTAdventConfiguration.cs" />
+    <Compile Include="DAL\Models\ActionToken.cs" />
+    <Compile Include="DAL\Models\Answer.cs" />
+    <Compile Include="DAL\Models\BonusPoint.cs" />
+    <Compile Include="DAL\Models\Highscores.cs" />
+    <Compile Include="DAL\Models\Country.cs" />
+    <Compile Include="DAL\Models\DBMigrationHistory.cs" />
+    <Compile Include="DAL\Models\Location.cs" />
+    <Compile Include="DAL\Models\Question.cs" />
+    <Compile Include="DAL\Models\Translation.cs" />
+    <Compile Include="DAL\Models\User.cs" />
+    <Compile Include="DAL\Repository\ActionTokenRepository.cs" />
+    <Compile Include="DAL\Repository\AnswerRepository.cs" />
+    <Compile Include="DAL\Repository\BonusPointRepository.cs" />
+    <Compile Include="DAL\Repository\QuestionRepository.cs" />
+    <Compile Include="DAL\Repository\UserRepository.cs" />
+    <Compile Include="DAL\Repository\WTAdventRepository.cs" />
+    <Compile Include="DAL\UnitOfWork\WTAdventUnitOfWork.cs" />
+    <Compile Include="Frontend\ApiWrappers\Twitter.cs" />
+    <Compile Include="Frontend\ApiWrappers\Instagram.cs" />
+    <Compile Include="Frontend\Fanwall.cs" />
+    <Compile Include="Frontend\Models\FanwallContainer.cs" />
+    <Compile Include="Frontend\Models\FanwallItem.cs" />
+    <Compile Include="Frontend\Models\FormFeedback.cs" />
+    <Compile Include="Frontend\Models\HighscoreItem.cs" />
+    <Compile Include="Frontend\Models\MyPoints.cs" />
+    <Compile Include="Frontend\Models\UserAnswer.cs" />
+    <Compile Include="Frontend\Models\UserQuestion.cs" />
+    <Compile Include="Frontend\StaticAppData.cs" />
+    <Compile Include="Migrations\201410171522544_questions.cs" />
+    <Compile Include="Migrations\201410171522544_questions.Designer.cs">
+      <DependentUpon>201410171522544_questions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201411171008591_remove-wrong-translation-table.cs" />
+    <Compile Include="Migrations\201411171008591_remove-wrong-translation-table.Designer.cs">
+      <DependentUpon>201411171008591_remove-wrong-translation-table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201411171010043_add-correct-translation-table.cs" />
+    <Compile Include="Migrations\201411171010043_add-correct-translation-table.Designer.cs">
+      <DependentUpon>201411171010043_add-correct-translation-table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201411171016459_remove-base-entity-from-translation.cs" />
+    <Compile Include="Migrations\201411171016459_remove-base-entity-from-translation.Designer.cs">
+      <DependentUpon>201411171016459_remove-base-entity-from-translation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mvc\BaseController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mvc\BaseView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mvc\ControllerFactory.cs" />
+    <Compile Include="Mvc\CsvActionResult.cs" />
+    <Compile Include="Mvc\RequireBasicAuthentication.cs" />
+    <Compile Include="Mvc\Translator.cs" />
+    <Compile Include="Mvc\WebContext.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\Email.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201410171522544_questions.resx">
+      <DependentUpon>201410171522544_questions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201411171008591_remove-wrong-translation-table.resx">
+      <DependentUpon>201411171008591_remove-wrong-translation-table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201411171010043_add-correct-translation-table.resx">
+      <DependentUpon>201411171010043_add-correct-translation-table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201411171016459_remove-base-entity-from-translation.resx">
+      <DependentUpon>201411171016459_remove-base-entity-from-translation.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KwIt.Project.Pattern\KwIt.Project.Pattern.csproj">
+      <Project>{b11cecc4-7760-4c38-a0f4-a23eb760e8e9}</Project>
+      <Name>KwIt.Project.Pattern</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

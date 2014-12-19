@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Webcam";
+    Layout = "~/Views/Shared/_LayoutMobile.cshtml";
+}
+
+<script>
+	$(document).ready(function()
+	{
+		var videoSize = new Object();
+		videoSize.width = $('#webcam-video').innerWidth();
+		videoSize.height = Math.round(videoSize.width / video_aspect);
+		init_yt_player(videoSize, 'ieDjQpwI3Nk', 'webcam-video');
+	});
+
+	$(window).resize(function()
+	{
+		resizePlayer('webcam-video');
+	});
+</script>
+
+<div class="page-container">
+	<h1>@Translate("schneekugel-headline")</h1>
+	@if (!IsCompetitionExpired)
+	{
+		<h2>@Translate("schneekugel-subheadline")</h2>
+	}
+	<section>
+		<div class="video-container" id="webcam-video" style="width:100%;"></div>
+	</section>
+</div>

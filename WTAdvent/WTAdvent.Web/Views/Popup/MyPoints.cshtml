@@ -1,0 +1,99 @@
+﻿@model WTAdvent.Core.Frontend.Models.MyPoints
+
+@{
+	var currentRank = 0;
+	long currentPoints = 0;
+	var punkte3 = IsCompetitionExpired ? "punkte-weitere3new" : "punkte-weitere3";
+	var punkte4 = IsCompetitionExpired ? "punkte-weitere4new" : "punkte-weitere4";
+}
+
+<script>
+	$(document).ready(function()
+	{
+		initEmailShare('my-points-email-share', 'top');
+	});
+</script>
+
+<div class="modal-header">
+	<span class="btn-close" onclick="hideModal('sidebar', 0)"></span>
+</div>
+<div class="modal-body">
+	<article>
+		<h1>@Translate("punkte-headline")</h1>
+		<h2>@Translate("punkte-subheadline")</h2>
+		<div class="content">
+			<div id="my-points">
+					<div class="slider-item">
+						<div class="content-container">
+							<div class="left">
+								<h3>@Translate("punkte-aktuellerstand")</h3>
+								<div class="current-points">@Bonuspoints</div>
+							</div>
+							<div class="right">
+								<h3>@Translate("punkte-wiebekommen")</h3>
+								@foreach (var p in Model.LatestBonusPoints)
+								{
+									<div class="points-for-row">
+										<span>@p.Points</span><label>@Translate(p.Message)</label>
+									</div>	
+								}
+							</div>
+							@if (Model.OpenQuestions.Any())
+	   {
+								<div class="full-width open-days">
+									<h3>@Translate("punkte-vergessen")</h3>
+									@foreach (var q in Model.OpenQuestions)
+		 {
+										<a class="open-question" href="javascript:void(0);" onclick=" loadSpecificQuestion(@q.Day) " title="@q.Day"><img src="/Images/eumel/@(@q.Day).png"/></a>
+		 }
+								</div>
+	   }
+							<div class="full-width highscores">
+								<h3>@Translate("top-ten")</h3>
+								<p>@string.Format(Translate("hashtag-subheadline2"), @UserCount)</p>
+								<table>
+									@for (int i = 0; i < Model.TopTen.Count(); i++)
+									{
+										var j = i + 1;
+			 if (currentPoints != Model.TopTen.ElementAt(i).Points)
+			 {
+				 currentRank++;
+				 currentPoints = Model.TopTen.ElementAt(i).Points;
+
+			 }
+			 var trClass = j == Model.MyRank.Rank ? "my-rank" : string.Empty;
+										<tr class="@trClass">
+											<td class="rank">@currentRank</td>
+											<td class="name"><img src="/Images/eumel/dragger-rot-@(@Model.TopTen.ElementAt(i).SnowieVersion).png" style="width:27px;height:27px;display:inline-block;margin: 0 10px 0 0;"/>@Model.TopTen.ElementAt(i).Name</td>
+											<td class="points">@Model.TopTen.ElementAt(i).Points</td>
+										</tr>
+		 }
+									@if (Model.MyRank.Rank > 10)
+		 {
+										<tr class="my-rank">
+											<td class="rank">&nbsp;</td>
+											<td class="name"><img src="/Images/eumel/dragger-rot-@(@Model.MyRank.SnowieVersion).png" style="width:27px;height:27px;display:inline-block;margin: 0 10px 0 0;"/>@Model.MyRank.Name</td>
+											<td class="points">@Model.MyRank.Points</td>
+										</tr>
+		 }
+								</table>
+							</div>
+								<div class="full-width" style="margin: 30px 0 0 0;">
+									<h3>@Translate("punkte-weitere")</h3>
+									<div style="display:inline-block;width:100%;text-align: center;margin:auto;">
+										<ul style="display:inline-block;">
+											<li style="text-align: left;"><span>@Translate("punkte-weitere1")</span></li>
+											<li style="text-align: left;"><span>@Translate("punkte-weitere2")</span></li>
+											<li style="text-align: left;"><span>@Translate(punkte3)</span></li>
+											<li style="text-align: left;"><span>@Translate(punkte4)</span></li>
+											<li style="text-align: left;"><span>@Translate("punkte-weitere5")</span></li>
+										</ul>
+									</div>
+									<a href="javascript:void(0);" class="link-btn" id="my-points-email-share" style="width:70%">@Translate("btn-freundeeinladen")</a>
+								</div>
+							</div>			
+					</div>
+				</div>
+		</div>
+	</article>
+</div>

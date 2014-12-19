@@ -1,0 +1,19 @@
+<krpano version="1.18">
+	
+	<!-- the skin -->
+	<include url="skin/defaultskin.xml" />
+	
+	<!-- view settings -->
+	<view hlookat="0" vlookat="0" maxpixelzoom="1.0" fovmax="150" limitview="range" vlookatmin="-30.735" vlookatmax="30.735" />
+	
+
+	<preview url="karlkirche1.tiles/preview.jpg" />
+
+	<image>
+		<cube url="karlkirche1.tiles/pano_%s.jpg" />
+		<mobile>
+			<cube url="karlkirche1.tiles/mobile_%s.jpg" />
+		</mobile>
+	</image>
+
+</krpano>

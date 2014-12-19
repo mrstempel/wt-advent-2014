@@ -1,0 +1,51 @@
+﻿<script>
+	$(document).ready(function()
+	{
+		initVideo();
+		initEmailShare('webcam-email-share', 'top');
+
+		@if (Convert.ToInt32(ViewBag.Bonus) > 0)
+		{
+			<text>addSidebarBonus(@ViewBag.Bonus);</text>
+		}
+	});
+
+	function initVideo()
+	{
+		var videoSize = new Object();
+		videoSize.width = $('#video-placeholder').innerWidth();
+		$('#video-placeholder').hide();
+		videoSize.height = Math.round(videoSize.width / video_aspect);
+		init_yt_player(videoSize, 'ieDjQpwI3Nk', 'webcam-video');
+		window.setTimeout(function() { jQuery('#webcam-video').tubeplayer('play');
+		}, 1000);
+	}
+
+	$(window).resize(function()
+	{
+		resizePlayer('webcam-video');
+	});
+</script>
+
+<div class="modal-header">
+	<span class="btn-close" onclick="jQuery('#webcam-video').tubeplayer('destroy');hideModal('sidebar', @ViewBag.Bonus)"></span>
+</div>
+<div class="modal-body">
+	<article>
+		<h1>@Translate("schneekugel-headline")</h1>
+		@if (!IsCompetitionExpired)
+		{
+			<h2>@Translate("schneekugel-subheadline")</h2>
+		}
+		<div class="content">
+			<img src="/Images/placeholder.gif" style="width:855px;height:1px;" id="video-placeholder"/>
+			<div class="video-container" id="webcam-video"></div>
+		</div>
+		<div class="share-container">
+			<a href="javascript:void(0);" onclick="shareFacebook('@(@BaseUrl)/@(@Lng)?sType=webcam&i_t=@InviteToken');" class="sprite social facebook"></a>
+			<a href="javascript:void(0);" onclick="shareGoogle('@(@BaseUrl)/@(@Lng)?sType=webcam&i_t=@InviteToken');" class="sprite social google"></a>
+			<a href="javascript:void(0);" onclick="shareTwitter('@(@BaseUrl)/@(@Lng)?sType=webcam&i_t=@InviteToken');" class="sprite social twitter"></a>
+			<a href="javascript:void(0);" id="webcam-email-share" class="sprite social mail"></a>
+		</div>
+	</article>
+</div>

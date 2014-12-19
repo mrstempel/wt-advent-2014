@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="css/normalize.min.css">
+
+        <style>
+            body {
+                background: #2980b9;
+            }
+        </style>
+
+        <!--[if lt IE 9]>
+            <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+            <script>window.html5 || document.write('<script src="js/vendor/html5shiv.js"><\/script>')</script>
+        <![endif]-->
+    </head>
+    <body style="height: 200vh">
+        <script src="js/vendor/jquery-1.11.0.min.js"></script>
+        <script src="../snow-3d/snow-3d-vendor.min.js"></script>
+        <script src="../snow-3d/snow-3d.min.js"></script>
+        <!--<script src="../snow-3d-source/snow-3d-vendor.js"></script>-->
+        <!--<script src="../snow-3d-source/snow-3d.js"></script>-->
+
+        <script>
+            $(function() {
+                $('body').snow3d({
+                    prefix:'snow3d',
+                    url: '../snow-3d/flakes/',
+//                    images: 'flake0.png',
+                    images: 'flake1.png,flake2.png,flake3.png,flake4.png,flake5.png,flake6.png,flake7.png',
+                    num:300,
+                    minScale:10,
+                    showOnce:'',
+                    enableMobile: true,
+                    fadeScroll: true,
+                    maxScale:50,
+//                    closeButton: 0,
+                    closeButtonMode: 'once',
+                    closeButtonStyles: 'border-radius: 21px;margin: 10px;'
+                });
+            });
+        </script>
+    </body>
+</html>

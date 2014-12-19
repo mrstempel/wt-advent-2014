@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title></title>
+	<script src="/Scripts/jquery-2.1.1.min.js"></script>
+	<script>
+		$(document).ready(function()
+		{
+			$('#user-agent').html(navigator.userAgent);
+			$('#screen').html("height: " + screen.height + ", width: " + screen.width);
+		});
+	</script>
+</head>
+<body>
+	<span id="user-agent"></span><br/>
+	screen: <span id="screen"></span>
+</body>
+</html>

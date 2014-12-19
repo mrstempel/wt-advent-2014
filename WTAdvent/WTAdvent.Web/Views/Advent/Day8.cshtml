@@ -1,0 +1,19 @@
+﻿@{
+    Layout = null;
+	var cssClass = Convert.ToInt32(ViewBag.Points) > 0 ? "bonus" : string.Empty;
+}
+
+<div class="modal-header">
+	<span class="btn-close" onclick="hideModal('more-info', @ViewBag.Points)"></span>
+</div>
+<div class="modal-body">
+	<article class="@cssClass">
+		<h1>@Translate("antwort8-headline")</h1>
+		<h2>@Translate("antwort8-text")</h2>
+		<div class="content">
+			<iframe src="/Content/8/index.html" height="495" scrolling="yes"></iframe>
+		</div>
+		<div class="content-description">@Translate("antwort8-artikel-content-beschreibung")</div>
+	</article>
+	@Html.Partial("_MoreInfoFooter",null)
+</div>

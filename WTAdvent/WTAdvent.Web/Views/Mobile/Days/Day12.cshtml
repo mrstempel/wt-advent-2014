@@ -1,0 +1,40 @@
+﻿@{
+    Layout = null;
+	var cssClass = Convert.ToInt32(ViewBag.Points) > 0 ? "bonus" : string.Empty;
+}
+
+<script>
+	$(document).ready(function()
+	{
+		window.setTimeout("setPanoSize()", 1000);
+	});
+
+	function setPanoSize()
+	{
+		var value = screen.width - 30;
+		value *= 1;
+		var valueHeight = Math.round((value / 16) * 9);
+		$('#pano-frame').css('width', value + 'px');
+		$('#pano-frame').css('height', valueHeight + 'px');
+	}
+
+	$(window).resize(function ()
+	{
+		setPanoSize();
+	});
+</script>
+
+<div class="modal-header">
+	<span class="btn-close" onclick="hideModal('more-info', @ViewBag.Points)"></span>
+</div>
+<div class="modal-body">
+	<article class="@cssClass" id="article-placeholder">
+		<h1>@Translate("antwort12-headline")</h1>
+		<h2>@Translate("antwort12-text")</h2>
+		<div class="content">
+			<iframe src="/Content/12/index.html" id="pano-frame" scrolling="yes"></iframe>
+		</div>
+		<div class="content-description">@Translate("antwort12-artikel-content-beschreibung")</div>
+	</article>
+	@Html.Partial("_MoreInfoFooter",null)
+</div>

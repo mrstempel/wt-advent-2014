@@ -1,0 +1,49 @@
+/**
+ * @license
+ * MyFonts Webfont Build ID 2883542, 2014-09-15T09:42:08-0400
+ * 
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are 
+ * explicitly restricted from using the Licensed Webfonts(s).
+ * 
+ * You may obtain a valid license at the URLs below.
+ * 
+ * Webfont: Melior Com Bold Italic by Linotype
+ * URL: http://www.myfonts.com/fonts/linotype/melior/com-bold-italic/
+ * Licensed pageviews: 500,000
+ * 
+ * Webfont: Melior Com Italic by Linotype
+ * URL: http://www.myfonts.com/fonts/linotype/melior/com-italic/
+ * Licensed pageviews: 500,000
+ * 
+ * Webfont: Melior Com Roman by Linotype
+ * URL: http://www.myfonts.com/fonts/linotype/melior/com-roman/
+ * Licensed pageviews: 250,000
+ * 
+ * Webfont: Melior Com Bold by Linotype
+ * URL: http://www.myfonts.com/fonts/linotype/melior/com-bold/
+ * Licensed pageviews: 250,000
+ * 
+ * 
+ * License: http://www.myfonts.com/viewlicense?type=web&buildid=2883542
+ * Webfonts copyright: Part of the digitally encoded machine readable outline data for producing the Typefaces provided is copyrighted &#x00A9; 2007 Linotype GmbH, www.linotype.com. All rights reserved. This software is the property of Linotype GmbH, and may not be reproduced, 
+ * 
+ * © 2014 MyFonts Inc
+*/
+
+
+/* @import must be at top of file, otherwise CSS will not work */
+@import url("//hello.myfonts.net/count/2bffd6");
+
+  
+@font-face {font-family: 'MeliorCom-BoldItalic';src: url('webfonts/2BFFD6_0_0.eot');src: url('webfonts/2BFFD6_0_0.eot?#iefix') format('embedded-opentype'),url('webfonts/2BFFD6_0_0.woff') format('woff'),url('webfonts/2BFFD6_0_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'MeliorCom-Italic';src: url('webfonts/2BFFD6_1_0.eot');src: url('webfonts/2BFFD6_1_0.eot?#iefix') format('embedded-opentype'),url('webfonts/2BFFD6_1_0.woff') format('woff'),url('webfonts/2BFFD6_1_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'MeliorCom';src: url('webfonts/2BFFD6_2_0.eot');src: url('webfonts/2BFFD6_2_0.eot?#iefix') format('embedded-opentype'),url('webfonts/2BFFD6_2_0.woff') format('woff'),url('webfonts/2BFFD6_2_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'MeliorCom-Bold';src: url('webfonts/2BFFD6_3_0.eot');src: url('webfonts/2BFFD6_3_0.eot?#iefix') format('embedded-opentype'),url('webfonts/2BFFD6_3_0.woff') format('woff'),url('webfonts/2BFFD6_3_0.ttf') format('truetype');}
+ 

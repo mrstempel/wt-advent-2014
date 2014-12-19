@@ -1,0 +1,41 @@
+﻿@{
+    Layout = null;
+	var cssClass = Convert.ToInt32(ViewBag.Points) > 0 ? "bonus" : string.Empty;
+}
+
+<script>
+	$(document).ready(function()
+	{
+		initVideo();
+	});
+
+	function initVideo()
+	{
+		$('#video-placeholder').hide();
+		var videoSize = new Object();
+		videoSize.width = $('#video-placeholder').innerWidth();
+		videoSize.height = Math.round(videoSize.width / video_aspect);
+		init_yt_playerAutoPlay(videoSize, '6blW4BTFhgY', 'day14-video');
+	}
+
+	$(window).resize(function()
+	{
+		resizePlayer('day14-video');
+	});
+</script>
+
+<div class="modal-header">
+	<span class="btn-close" onclick="jQuery('#day14-video').tubeplayer('destroy');hideModal('more-info', @ViewBag.Points)"></span>
+</div>
+<div class="modal-body">
+	<article class="@cssClass">
+		<h1>@Translate("antwort14-headline")</h1>
+		<h2>@Translate("antwort14-text")</h2>
+		<div class="content">
+			<img src="/Images/placeholder.gif" style="width:855px;height:481px;" id="video-placeholder"/>
+			<div class="video-container" id="day14-video"></div>
+		</div>
+		<div class="content-description">Livestreaming: 15:00 - 19:15<br/>@Translate("antwort14-artikel-content-beschreibung")</div>
+	</article>
+	@Html.Partial("_MoreInfoFooter",null)
+</div>

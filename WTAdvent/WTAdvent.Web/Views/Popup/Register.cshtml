@@ -1,0 +1,222 @@
+﻿@model WTAdvent.Core.DAL.Models.User
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutIFrame.cshtml";
+	var teilnahmebedingungen = string.Format(Translate("teilnahmebedingungen-ok"), "<a href='javascript:void(0);' onclick=\"parent.window.showSidebarPopup('Teilnahmebedingungen');\">" + Translate("teilnahmebedingungen-headline") + "</a>");
+	var datenschutz = string.Format(Translate("person-newsletter"), "<a href='" + Translate("link-datenschutz-url") + "' target='_blank'>" + Translate("link-datenschutz") + "</a>");
+	var countryPartial = (Lng == "de") ? "CountrieSelectDe" : "CountrieSelectEn";
+}
+
+@section CustomJavascript 
+{
+	<script>
+		var maxSnowieVersions = 1;
+		var currentSnowieVersion = 1;
+		var clickSem = false;
+		$(document).ready(function()
+		{
+			parent.window.resizeIframe($('body')[0].scrollHeight + 80, 'start-overlay-frame');
+			parent.window.scrollToTop();
+			initForms();
+			parent.window.hideLoadingMsg();
+			maxSnowieVersions = $('.snowie-version').length;
+
+			$('.prev').click(function()
+			{
+				if (!clickSem)
+				{
+					clickSem = true;
+					var prev = (currentSnowieVersion == 1) ? maxSnowieVersions : currentSnowieVersion - 1;
+					$('#snowie-' + currentSnowieVersion).fadeOut('fast', function()
+					{
+						$('#snowie-' + prev).fadeIn('fast').css("display", "inline-block");
+						currentSnowieVersion = prev;
+						$('#SnowieVersion').val(currentSnowieVersion);
+						clickSem = false;
+					});
+				}
+			});
+
+			$('.next').click(function()
+			{
+				if (!clickSem)
+				{
+					clickSem = true;
+					var next = (currentSnowieVersion == maxSnowieVersions) ? 1 : currentSnowieVersion + 1;
+					$('#snowie-' + currentSnowieVersion).fadeOut('fast', function()
+					{
+						$('#snowie-' + next).fadeIn('fast').css("display", "inline-block");
+						currentSnowieVersion = next;
+						$('#SnowieVersion').val(currentSnowieVersion);
+						clickSem = false;
+					});
+				}
+			});
+
+			$('#CountryId').change(function()
+			{
+				$('#Country').val($("#CountryId option:selected").text());
+			});
+
+			$('#HasDailyReminderCB').click(function() { $('#HasDailyReminder').val($(this).prop('checked')); });
+			$('#HasNewsletterCB').click(function()
+			{
+				$('#HasNewsletter').val($(this).prop('checked'));
+				if ($(this).prop('checked'))
+				{
+					$('#register-newsletter-lng').addClass('mandatory');
+				} 
+				else
+				{
+					$('#register-newsletter-lng').removeClass('mandatory');
+				}
+			});
+
+			parent.window.mySnowieVersion = @Model.SnowieVersion;
+
+			@if (FormSuccess != null && string.IsNullOrEmpty(FormSuccess.Headline))
+			{
+				<text>showBonus('register-points', 3, false);parent.window.addSidebarBonus(3);</text>
+			}
+			else if (FormSuccess != null)
+			{
+				<text>parent.window.location.reload(false);</text>
+			}
+		});
+
+		function checkLoginEnterClick(e)
+		{
+			if (e.keyCode == 13)
+			{
+				login();
+				e.preventDefault();
+				return false;
+			}
+
+			return true;
+		}
+	</script>
+}
+
+@section CustomAfterBody 
+{
+	<script src="~/Scripts/advent-facebook.min.js"></script>
+}
+
+@if (FormSuccess == null)
+{
+	<div class="max-width" id="page-top">
+		<h1>@Translate("headline1")<br />@Translate("headline2")</h1>
+		<h2>@Translate("registrierung-headline")</h2>
+	</div>
+	
+	<div id="login-container">
+		<div class="intro-container">
+			<div class="slider-item">
+				<div class="content-container">
+					<div class="full-width">
+						<form>
+							<div class="field-container">
+								<input type="text" id="login-email" placeholder="E-Mail*" onkeypress="checkLoginEnterClick(event)"/><br/>
+								<a href="javascript:void(0);" onclick="login();" class="link-btn">@Translate("btn-login")</a><br/>
+								<span>@Translate("option")</span><br/>
+								<a href="javascript:void(0);" onclick="hideLogin();">@Translate("backtoregistration")</a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="register-container">
+		@using (Html.BeginForm("Register", "Popup", FormMethod.Post, new { @id = "fb-login-form" }))
+  {
+			<input type="hidden" name="Id" value="@Model.Id"/>
+			<input type="hidden" name="Guid" value="@Model.Guid"/>
+			<input type="hidden" name="InsertDate" value="@Model.InsertDate"/>
+			<input type="hidden" name="SnowieVersion" value="1"/>
+			<input type="hidden" name="Sex" id="fb-sex"/>
+			<input type="hidden" name="Firstname" id="fb-firstname"/>
+			<input type="hidden" name="Surname" id="fb-surname"/>
+			<input type="hidden" name="Email" id="fb-email"/>
+			<input type="hidden" name="FacebookId" id="fb-id"/>
+  }
+
+		@using (Html.BeginForm("Register", "Popup", FormMethod.Post))
+  {
+			@Html.HiddenFor(m => m.Id)
+			@Html.HiddenFor(m => m.Guid)
+			@Html.HiddenFor(m => m.InsertDate)
+			@Html.HiddenFor(m => m.SnowieVersion)
+			<input type="hidden" name="HasDailyReminder" id="HasDailyReminder" value="false"/>
+			<input type="hidden" name="HasNewsletter" id="HasNewsletter" value="false"/>
+			<div class="intro-container">
+				<div class="slider-item">
+					<div class="content-container">
+						<div class="left">
+							<h2>@Translate("registrierung-subline1")</h2>
+							<div class="shape-container">
+								<a href="javascript:void(0);" id="shape-prev" class="prev"><img src="/Images/paging-prev.png" alt=""/></a>
+								<a href="javascript:void(0);" id="shape-next" class="next"><img src="/Images/paging-next.png" alt=""/></a>
+								<span class="sprite snowie-version active" id="snowie-1"></span>
+								<span class="sprite snowie-version" id="snowie-2"></span>
+								<span class="sprite snowie-version" id="snowie-3"></span>
+								<span class="sprite snowie-version" id="snowie-4"></span>
+							</div>
+						</div><div class="right">
+								  <h2>@Translate("registrierung-subline2")</h2>
+								<div class="msg-container" id="msg-container">
+									<div id="msg-error" class="msg error"><p>Ein unerwateter Fehler ist aufgetreten. Bitte versuche es erneut.</p></div>
+								</div>
+							      <div class="field-container">
+								      <input type="radio" name="Sex" value="M" id="sex-m" checked/><label for="sex-m" class="radio">@Translate("anrede-herr")</label>
+								      <input type="radio" name="Sex" value="F" id="sex-f"/><label for="sex-f" class="radio">@Translate("anrede-frau")</label>
+							      </div>
+							      <div class="field-container">
+								      @Html.TextBoxFor(m => m.Firstname, new { @placeholder = Translate("person-vorname"), @class = "mandatory" })
+								      @Html.TextBoxFor(m => m.Surname, new { @placeholder = Translate("person-nachname"), @class = "mandatory" })
+								      @Html.TextBoxFor(m => m.Email, new { @placeholder = Translate("person-email"), @class = "mandatory" })
+									  @Html.Partial("Partial/" + countryPartial)
+								      <div class="checkbox-container"><input type="checkbox" name="HasNewsletterCB" id="HasNewsletterCB" /><label for="HasNewsletterCB" class="radio">@Html.Raw(datenschutz)</label></div>
+									   <select name="newsletterLng" id="register-newsletter-lng">
+											<option value="">@Translate("newsletter-sprache")</option>
+											<option value="de">@Translate("newsletter-sprache-de")</option>
+											<option value="en">@Translate("newsletter-sprache-en")</option>
+										</select>
+								      <div class="checkbox-container" id="teilnahmebedingungen-container"><input type="checkbox" id="teilnahmebedingungen-check" /><label for="teilnahmebedingungen-check" class="radio">@Html.Raw(teilnahmebedingungen)</label></div>
+							      </div>
+							      <div class="field-container">
+								      <input type="submit" value="@Translate("btn-anmelden")" onclick="return validateRegister();" style="padding: 10px 20px;border:0;border-radius: 0;"/><br/>
+									  <a href="javascript:void(0);" onclick="setMediaPixel('568026');_gaq.push(['_trackEvent', 'facebook-login', 'clicked']);doFacebookLogin();" class="fb-btn">@Translate("btn-login")</a>
+							      </div>
+							  </div>
+						<div class="full-width register">
+							<h2>@Translate("registrierung-subline3")<br/><a href="javascript:void(0);" onclick="showLogin();">@Translate("registrierung-subline4")</a></h2>
+						</div>
+					</div>			
+				</div>
+			</div>
+  }
+	</div>
+}
+else if (string.IsNullOrEmpty(FormSuccess.Headline))
+{
+	<script>setMediaPixel('568028');</script>
+	<div class="max-width">
+		<h1>@Translate("info-text-super")</h1>
+		<h2>@Translate("registrierung-erfolgreich2")<br />@Translate("info-text-super2")</h2>
+	</div>
+	
+	<div class="intro-container" id="danke-register">
+		<div class="slider-item">
+			<div class="content-container">
+				<div class="full-width">
+					<div class="points-container" id="register-points"><h1>+3</h1></div>
+					<p><a href="javascript:void(0);" onclick="parent.window.location.reload(false);" class="link-btn">@Translate("btn-erstefrage")</a></p>
+				</div>
+			</div>
+		</div>
+	</div>	
+}

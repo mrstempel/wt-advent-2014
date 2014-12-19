@@ -1,0 +1,108 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutMobile.cshtml";
+	var losgehts = (string.IsNullOrEmpty(LoggedUser.Email)) ? "/" + Lng + "/Mobile/Register" : "javascript:goParty();";
+	var losgehtsText = (string.IsNullOrEmpty(LoggedUser.Email)) ? Translate("btn-losgehts") : Translate("zurueck-zum-kalender");
+}
+
+<script>
+	$(document).ready(function()
+	{
+		var videoSize = new Object();
+		videoSize.width = $("#intro-video").innerWidth();
+		videoSize.height = Math.round(videoSize.width / video_aspect);
+		init_yt_player(videoSize, '@Translate("video-start-url").Replace("https://www.youtube.com/watch?v=", "")', 'intro-video');
+		loadIntroHashtags();
+		setMediaPixel(568024);
+	});
+
+	$(window).resize(function()
+	{
+		resizePlayer('intro-video');
+	});
+
+	function anaylticsClick()
+	{
+		@if ((string.IsNullOrEmpty(LoggedUser.Email)))
+		{
+			<text>setMediaPixel('568025'); _gaq.push(['_trackEvent', 'los-gehts', 'clicked']);</text>
+		}
+		else 
+		{
+			<text>_gaq.push(['_trackEvent', 'zurueck-zum-kalender', 'clicked']);</text>
+		}
+	}
+</script>
+
+<div class="page-container">
+	@if (!IsCompetitionExpired)
+	{
+		<h1>@Translate("headline1")<br/>@Translate("headline2")</h1>
+	}
+	else
+	{
+		<h1>@Translate("headline1new")</h1>
+	}
+	<section>
+		<h3>@Translate("perzy-headline")</h3>
+		<div class="video-container" id="intro-video"></div>
+		<p>@Translate("perzy-text")</p>
+		@if (!IsCompetitionExpired)
+		{
+			<h3 class="link" onclick=" scrollToDivMobile('s-prizes') ">@Translate("gewinn-hl")</h3>
+			<ul>
+				<li><span>@Translate("gewinn-list1")</span></li>
+				<li><span>@Translate("gewinn-list2")</span></li>
+			</ul>
+		}
+		<a href="@losgehts" onclick="anaylticsClick();" class="link-btn full-width" style="margin: 20px 0;">@losgehtsText</a>
+	</section>
+	@if (!IsCompetitionExpired)
+	{
+		<section id="s-prizes">
+			<h3>@Translate("preise-headline")</h3>
+			<div class="center-content"><img src="/Images/intro-content.png" class="full-width"/></div>
+			<p style="margin: 10px 0 0 0;">@Translate("preise-text1")<br/><br />@Translate("preise-text2")</p>
+			<ul style="margin-bottom: 10px;">
+				<li><span>@Translate("preise-bullet1")</span></li>
+				<li><span>@Translate("preise-bullet2")</span></li>
+				<li><span>@Translate("preise-bullet3")</span></li>
+				<li><span>@Translate("preise-bullet4")</span></li>
+				<li><span>@Translate("preise-bullet5")</span></li>
+				<li><span>@Translate("preise-bullet6")</span></li>
+			</ul>
+			<a href="@losgehts" onclick=" anaylticsClick(); " class="link-btn full-width" style="margin: 20px 0;">@losgehtsText</a>
+		</section>
+	}
+	<section>
+		<h3>@Translate("hashtag-headline")</h3>
+		<div class="center-content">
+			<div class="intro-hashtag-container"></div>
+			<div class="intro-hashtag-loading">loading ...</div>
+		</div>
+		<p>@string.Format(Translate("hashtag-text"), @UserCount, @CountryCount)</p>
+		@if (!IsCompetitionExpired)
+		{
+			<h3  class="link" onclick=" scrollToDivMobile('s-prizes') ">@Translate("gewinn-hl")</h3>
+			<ul>
+				<li><span>@Translate("gewinn-list1")</span></li>
+				<li><span>@Translate("gewinn-list2")</span></li>
+			</ul>
+		}
+		<a href="@losgehts" onclick="anaylticsClick();" class="link-btn full-width" style="margin: 20px 0;">@losgehtsText</a>
+	</section>
+	<section>
+		<h3>@Translate("package-headline")</h3>
+		<div class="center-content"><img src="/Images/intro-buchen.png" class="full-width"/></div>
+		<h3>@Translate("package-subline")</h3>
+		<p class="important">@Translate("package-leistungen")</p>
+		<ul style="margin-bottom: 10px;">
+			<li><span>@Translate("package-leistung1")</span></li>
+			<li><span>@Translate("package-leistung2")</span></li>
+			<li><span>@Translate("package-leistung3")</span></li>
+			<li><span>@Translate("package-leistung4")</span></li>
+		</ul>
+		<p>@Translate("package-preis")<br/><a href="@Translate("package-link")" target="_blank" style="color:#e3000e;">@Translate("package-buchen")</a></p>
+		<a href="@losgehts" onclick="anaylticsClick();" class="link-btn full-width" style="margin: 20px 0;">@losgehtsText</a>
+	</section>
+</div>

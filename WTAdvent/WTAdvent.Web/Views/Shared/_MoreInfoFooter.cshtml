@@ -1,0 +1,24 @@
+﻿<script>
+	$(document).ready(function()
+	{
+		initEmailShare('more-info-email-share', 'top');
+	});
+</script>
+
+<footer>
+	<div class="content-container">
+		<div class="left">
+			@Translate("antwort" + ViewBag.Day + "-headline")<br/>
+			@Translate("antwort" + ViewBag.Day + "-adresse-str")<br/>
+			@Translate("antwort" + ViewBag.Day + "-adresse-plz")<br/>
+			<a href="http://@Translate("antwort" + ViewBag.Day + "-adresse-link")" target="_blank">@Translate("antwort" + ViewBag.Day + "-adresse-link")</a>
+		</div><div class="right"><a href="@Translate("antwort" + ViewBag.Day + "-artikel-link")" class="link-btn" target="_blank">@Translate("frage-overlay-btn-weiterlesen")</a>
+			      <div class="share-container">
+				      <a href="javascript:void(0);" onclick="shareFacebook('@(@BaseUrl)/@(@Lng)?sType=day@(@ViewBag.Day)&i_t=@InviteToken');" class="sprite social facebook"></a>
+				      <a href="javascript:void(0);" onclick="shareGoogle('@(@BaseUrl)/@(@Lng)?sType=day@(@ViewBag.Day)&i_t=@InviteToken');" class="sprite social google"></a>
+				      <a href="javascript:void(0);" onclick="shareTwitter('@(@BaseUrl)/@(@Lng)?sType=day@(@ViewBag.Day)&i_t=@InviteToken');" class="sprite social twitter"></a>
+				      <a href="javascript:void(0);" id="more-info-email-share" class="sprite social mail"></a>
+			      </div>
+		</div>
+	</div>
+</footer>

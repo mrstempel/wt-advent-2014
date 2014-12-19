@@ -1,0 +1,133 @@
+/* app css stylesheet */
+
+div {
+  font-size: 30px;
+}
+
+.memory td {padding: 0 10px 10px 0;}
+.memory td:nth-child(4) {padding: 0 0 10px 0;}
+
+h1
+{
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	font-family: 'Helvetica';
+	font-weight: bold !important;
+	text-align: center;
+	border: 0;
+	text-decoration: none;
+	color: #7d7d7d !important;
+	font-size: 20px !important;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+.container {
+  width: 65px;
+  height: 65px;
+  position: relative;
+  -webkit-perspective: 800px;
+  -moz-perspective: 800px;
+  -ms-perspective: 800px;
+  -o-perspective: 800px;
+  perspective: 800px;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  -webkit-transition: -webkit-transform 1s;
+  -moz-transition: -moz-transform 1s;
+  -ms-transition: -ms-transform 1s;
+  -o-transition: -o-transform 1s;
+  transition: transform 1s;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+	margin: 0 5px 5px 0;
+}
+
+.card.flipped 
+{
+  -webkit-transform: rotateY( 180deg );
+  -moz-transform: rotateY( 180deg );
+  -ms-transform: rotateY( 180deg );
+  -o-transform: rotateY( 180deg );
+  transform: rotateY( 180deg );
+}
+
+.card img {
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.card .back {
+  background: blue;
+  -webkit-transform: rotateY( 180deg );
+  -moz-transform: rotateY( 180deg );
+  -ms-transform: rotateY( 180deg );
+  -o-transform: rotateY( 180deg );
+  transform: rotateY( 180deg );
+}
+
+#memory-message {
+  width: 100%;
+  text-align: center;
+  font-family: 'Helvetica';
+	font-weight: bold !important;
+	color: #7d7d7d;
+	font-size: 20px;
+	display: inline-block;
+	margin: 0 0 10px 0;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+#memory-message span
+{
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	font-family: 'Helvetica';
+	font-weight: bold !important;
+	display: inline-block;
+	padding: 10px 20px;
+	text-align: center;
+	border: 0;
+	text-decoration: none;
+}
+
+
+.link-btn
+{
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	font-family: 'Helvetica';
+	font-weight: bold !important;
+	display: inline-block;
+	padding: 10px 20px;
+	background: #e3000e;
+	color: #fff;
+	text-align: center;
+	border: 0;
+	text-decoration: none;
+	font-size: 12px;
+}
+.link-btn:hover
+{
+	color: #fff;
+	text-decoration: none;
+}

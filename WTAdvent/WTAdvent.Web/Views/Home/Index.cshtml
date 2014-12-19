@@ -1,0 +1,112 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+	var frage2Index = IsCompetitionExpired ? "frage-info2new" : "frage-info2";
+}
+
+@section CustomJavascript 
+{
+	<script>
+		$(document).ready(function()
+		{
+			letItSnow();
+		});
+
+		function testModal()
+		{
+			showModal('sample', 'Sample');
+		}
+	</script>
+}
+
+<div id="map-container"></div>
+
+<div id="question">
+	<div class="container">
+		<h1></h1>
+		<div class="question-how-to" id="question-how-to1">
+			<span class="important">@Translate("frage-anweisung1")</span><br/>
+			<span >@Translate("frage-info1")</span>
+		</div>
+		<div class="question-how-to" id="question-how-to2">
+			<span class="important">@Translate("frage-wronganswer")<a href="" class="btn-tipp" target="_blank">@Translate("frage-btn-tipp")</a><br/>@Translate("frage-tryagain")</span><br/>
+			<span >@Translate("frage-tryagain-info1")</span>
+		</div>
+		<div class="question-how-to" id="question-how-to3">
+			<span class="important">@Translate("frage-wronganswer")<a href="" class="btn-tipp" target="_blank">@Translate("frage-btn-tipp")</a><br/>@Translate("frage-tryagain")</span><br/>
+			<span >@Translate("frage-tryagain-info2")</span>
+		</div>
+		<div class="question-how-to" id="question-how-to4">
+			<span class="important">@Translate("frage-wronganswer")<br/>@Translate("antwort-daneben")</span>
+		</div>
+		<div class="question-how-to" id="question-how-to5">
+			<span class="important">@Translate("antwort-richtig")</span>
+			<div class="points-container" id="answer-points"><h1>+10</h1></div>
+		</div>
+	</div>
+</div>
+
+<div id="reminder">
+	<div class="container">
+		<h1>@Translate(frage2Index)</h1>
+		<div id="reminder-open-question-container">
+			<span class="important">@Translate("offene-fragen")</span>
+			<div id="reminder-open-questions"></div>
+		</div>
+	</div>
+</div>
+
+<div id="popup-bonus">
+	<div class="container"><div class="points-container" id="popup-points"><h1>+3</h1></div></div>
+</div>
+
+<div id="start-overlay-container">
+	<div class="background"></div>
+	<div id="start-overlay-content"></div>
+	<div id="start-overlay-frame-container">
+		<iframe id="start-overlay-frame" scrolling="auto"></iframe>
+	</div>
+</div>
+
+<div id="sidebar">
+	<ul>
+		<li><span id="popover-my-snowie" class="sprite my-snowie@(@LoggedUser.SnowieVersion)" data-url="MySnowie" data-toggle="popover" data-content="@Translate("tooltip-snowie-description")" data-original-title="@Translate("tooltip-snowie-headline")"></span></li>
+		<li><span id="popover-points" class="sprite points" data-url="MyPoints" data-toggle="popover" data-content="@Translate("tooltip-punkte-description")" data-original-title="@Translate("tooltip-punkte-headline")">@Bonuspoints</span></li>
+		<li><span id="popover-webcam" class="sprite webcam" data-url="Webcam" data-toggle="popover" data-content="@Translate("tooltip-schneekugel-description")" data-original-title="@Translate("tooltip-schneekugel-headline")"></span></li>
+		<li><span id="popover-hashtag" class="sprite hashtag" data-url="Hashtag" data-toggle="popover" data-content="@Translate("tooltip-hashtag-description")" data-original-title="@Translate("tooltip-hashtag-headline")"></span></li>
+		@*<li><span id="popover-more" class="sprite more" data-toggle="popover" data-content="@Translate("tooltip-hashtag-description")" data-original-title="@Translate("tooltip-hashtag-headline")"></span></li>*@
+	</ul>
+</div>
+
+<div id="zoom-control">
+	<a href="javascript:void(0);" onclick="zoomIn();" class="sprite zoominger plus"></a>
+	<a href="javascript:void(0);" onclick="zoomOut();" class="sprite zoominger minus"></a>
+</div>
+
+<a id="home-btn" class="sprite home" href="javascript:void(0);" onclick="loadIntroOnMap();"></a>
+
+<div id="loading-message">
+	<span>@Translate("status-loading")</span><span class="l-1"></span><span class="l-2"></span><span class="l-3"></span><span class="l-4"></span><span class="l-5"></span><span class="l-6"></span>
+</div>
+
+<!-- modal windows -->
+<div id="modal-more-info" class="modal hide fade modal-fullscreen" tabindex="-1"  aria-hidden="true"></div>
+<div id="modal-sidebar" class="modal hide fade modal-fullscreen" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+
+<!-- content templates -->
+<div id="drop-confirm" class="content-template">
+	<div class="bubble-content-container">
+		<div class="content">
+			<a href="javascript:void(0);" onclick="setMediaPixel('568029');_gaq.push(['_trackEvent', 'antwort-senden', 'clicked']);setAnswer();" class="link-btn">@Translate("frage-btn-antwortsenden")</a>
+		</div>
+	</div>
+</div>
+
+<div id="answer-confirm" class="content-template">
+	<div class="bubble-content-container">
+		<div class="content more-info-btn">
+			<a href="javascript:void(0);" onclick="setMediaPixel('568030');{more-info-link}" class="link-btn" style="font-size: 16px;">{more-info-bonus-message}</a>
+		</div>
+	</div>
+</div>
+<!-- /content templates -->

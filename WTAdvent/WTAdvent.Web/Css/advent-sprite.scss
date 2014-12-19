@@ -1,0 +1,78 @@
+﻿.sprite 
+{
+    background-image: url(../Images/sprite-v1.0.png);
+    -moz-background-size: 1000px 500px;
+    -o-background-size: 1000px 500px;
+    -webkit-background-size: 1000px 500px;
+    background-size: 1000px 500px;
+    background-repeat: no-repeat; 
+    display:inline-block;
+	width: 70px;
+	height: 70px;
+}
+
+#sidebar
+{
+	.sprite.my-snowie1 { background-position: 0 0; }
+	.sprite.my-snowie1:hover { background-position: -70px 0; }
+	.sprite.my-snowie2 { background-position: 0 -70px; }
+	.sprite.my-snowie2:hover { background-position: -70px -70px; }
+	.sprite.my-snowie3 { background-position: 0 -140px; }
+	.sprite.my-snowie3:hover { background-position: -70px -140px; }
+	.sprite.my-snowie4 { background-position: 0 -210px; }
+	.sprite.my-snowie4:hover { background-position: -70px -210px; }
+	.sprite.points { background-position: 0 -280px; }
+	.sprite.points:hover { background-position: -70px -280px; }
+	.sprite.webcam { background-position: 0 -350px; }
+	.sprite.webcam:hover { background-position: -70px -350px; }
+	.sprite.hashtag { background-position: 0 -420px; }
+	.sprite.hashtag:hover { background-position: -70px -420px; }
+	.sprite.more { background-position: 0 -490px; }
+	.sprite.more:hover { background-position: -70px -490px; }
+}
+
+.sprite.snowie-version { width: 150px; height: 150px; }
+#snowie-1 { background-position: -350px 0; }
+#snowie-2 { background-position: -350px -150px; }
+#snowie-3 { background-position: -500px 0; }
+#snowie-4 { background-position: -500px -150px; }
+
+.sprite.social { width: 40px; height: 40px; }
+.sprite.social.facebook { background-position: -805px -5px; }
+.sprite.social.facebook:hover { background-position: -805px -55px; }
+.sprite.social.google { background-position: -855px -5px; }
+.sprite.social.google:hover { background-position: -855px -55px; }
+.sprite.social.twitter { background-position: -905px -5px; }
+.sprite.social.twitter:hover { background-position: -905px -55px; }
+.sprite.social.mail { background-position: -955px -5px; }
+.sprite.social.mail:hover { background-position: -955px -55px; }
+
+.sprite.social-small { width: 20px; height: 20px; }
+.sprite.social-small.facebook { background-position: -815px -115px; }
+.sprite.social-small.google { background-position: -865px -115px; }
+.sprite.social-small.twitter { background-position: -915px -115px;  width: 21px; }
+.sprite.social-small.mail { background-position: -965px -115px; }
+
+.sprite.wt-social { width: 20px; height: 20px; }
+.sprite.wt-social.facebook { background-position: -815px -165px; }
+.sprite.wt-social.is { background-position: -865px -165px; }
+.sprite.wt-social.twitter { background-position: -915px -165px; width: 21px; }
+.sprite.wt-social.youtube { background-position: -965px -165px; }
+
+.sprite.zoominger { width: 40px; height: 40px; }
+.sprite.zoominger.plus { background-position: -705px -5px; }
+.sprite.zoominger.plus:hover { background-position: -705px -55px; }
+.sprite.zoominger.minus { background-position: -755px -5px; }
+.sprite.zoominger.minus:hover { background-position: -755px -55px; }
+
+.sprite.home { width: 40px; height: 40px; background-position: -705px -105px; }
+.sprite.home:hover { width: 40px; height: 40px; background-position: -755px -105px; }
+
+.sprite.logo { width: 120px; height:50px; }
+.sprite.logo.de { background-position: -165px -0px; }
+.sprite.logo.en { background-position: -165px -50px; }
+.sprite.logo.fr { background-position: -165px -100px; }
+.sprite.logo.it { background-position: -165px -150px; } 
+.sprite.logo.es { background-position: -165px -200px; }
+
+.sprite.info { width: 40px; height: 41px; background-position: -705px -204px; }

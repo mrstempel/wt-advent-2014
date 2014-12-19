@@ -1,0 +1,105 @@
+﻿@{
+    Layout = null;
+	var cssClass = Convert.ToInt32(ViewBag.Points) > 0 ? "bonus" : string.Empty;
+}
+
+<script>
+	var maxGItem = 1;
+	var currentGItem = 1;
+	var clickSem = false;
+	$(document).ready(function()
+	{
+		maxGItem = $('.g-item').length;
+
+		$('.gallery-container').mouseover(function()
+		{
+			$('#g-prev').fadeIn();
+			$('#g-next').fadeIn();
+		});
+
+		$('.gallery-container').mouseleave(function ()
+		{
+			$('#g-prev').fadeOut();
+			$('#g-next').fadeOut();
+		});
+
+		$('.prev').click(function()
+		{
+			if (!clickSem)
+			{
+				clickSem = true;
+				var prev = (currentGItem == 1) ? maxGItem : currentGItem - 1;
+				$('#g-' + currentGItem).fadeOut('fast', function ()
+				{
+					$('#g-' + prev).fadeIn('fast').css("display", "inline-block");
+					currentGItem = prev;
+					clickSem = false;
+				});
+			}
+		});
+
+		$('.next').click(function()
+		{
+			if (!clickSem)
+			{
+				clickSem = true;
+				var next = (currentGItem == maxGItem) ? 1 : currentGItem + 1;
+				$('#g-' + currentGItem).fadeOut('fast', function ()
+				{
+					$('#g-' + next).fadeIn('fast').css("display", "inline-block");
+					currentGItem = next;
+					clickSem = false;
+				});
+			}
+		});
+	});
+</script>
+
+<div class="modal-header">
+	<span class="btn-close" onclick="hideModal('more-info', @ViewBag.Points)"></span>
+</div>
+<div class="modal-body">
+	<article class="@cssClass">
+		<h1>@Translate("antwort19-headline")</h1>
+		<h2>@Translate("antwort19-text")</h2>
+		<div class="content">
+			<div class="gallery-container">
+				<a href="javascript:void(0);" id="g-prev" class="prev"><img src="/Images/paging-prev.png" alt=""/></a>
+				<a href="javascript:void(0);" id="g-next" class="next"><img src="/Images/paging-next.png" alt=""/></a>
+				<img class="g-item active" id="g-1" src="/Content/19/1.png" />
+				<img class="g-item" id="g-2" src="/Content/19/2.png" />
+				<img class="g-item" id="g-3" src="/Content/19/3.png" />
+			</div>
+		</div>
+		<div class="content-description">@Translate("antwort19-artikel-content-beschreibung")</div>
+		<div class="rezept-container">
+			<h1>@Translate("rezept3-zutaten-headline")</h1>
+			<div class="col">
+				@Translate("rezept3-zutaten-1-1")<br/>
+				@{
+					var zutaten1 = Translate("rezept3-zutaten-1").Split(";".ToCharArray());
+					foreach (var s in zutaten1)
+					{
+						@s<br/>
+					}
+				}
+			</div><div class="col">
+				<h3>@Translate("rezept3-zutaten-2")</h3>
+				@{
+					var zutaten2 = Translate("rezept3-zutaten-2-1").Split(";".ToCharArray());
+					foreach (var s in zutaten2)
+					{
+						@s<br/>
+					}
+				}
+			</div>
+			<h1>@Translate("rezept3-zubereitung")</h1>
+			<p>@Translate("rezept3-zubereitung-1")</p>
+			<p>@Translate("rezept3-zubereitung-2")</p>
+			<p>@Translate("rezept3-zubereitung-3")</p>
+			<p>@Translate("rezept3-zubereitung-4")</p>
+			<p>@Translate("rezept3-zubereitung-5")</p>
+		</div>
+	</article>
+	@Html.Partial("_MoreInfoFooter",null)
+</div>

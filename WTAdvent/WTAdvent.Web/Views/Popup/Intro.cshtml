@@ -1,0 +1,150 @@
+﻿<script>
+	var pagerTitles = new Array();
+	pagerTitles.push('@Translate("slider01")');
+	//pagerTitles.push('@Translate("slider02")');
+	pagerTitles.push('@Translate("slider03")');
+	pagerTitles.push('@Translate("slider04")');
+	pagerTitles.push('@Translate("slider05")');
+	var slider = null;
+	$(document).ready(function()
+	{
+		slider = $('#slider-container').bxSlider({
+			onSliderLoad: function ()
+			{
+				initVideo();
+			},
+			controls: false,
+			slideWidth: 1805
+		});
+		loadIntroHashtags();
+		window.setTimeout("setSlierTitles()", 500);
+	});
+
+	function initVideo()
+	{
+		debug("initVideo()");
+		var videoSize = new Object();
+		videoSize.width = $("#video-blank").innerWidth();
+		videoSize.height = Math.round(videoSize.width / video_aspect);
+		$("#video-blank").hide();
+		init_yt_player(videoSize, '@Translate("video-start-url").Replace("https://www.youtube.com/watch?v=", "")', 'intro-video');
+	}
+
+	function setSlierTitles()
+	{
+		$('.bx-pager').find('a').each(function ()
+		{
+			var slideIndex = $(this).attr('data-slide-index');
+			$(this).attr('title', pagerTitles[slideIndex]);
+		});
+	}
+
+	$(window).resize(function()
+	{
+		resizePlayer('intro-video');
+	});
+</script>
+
+<div class="max-width">
+	@if (!IsCompetitionExpired)
+	{
+		<h1>@Translate("headline1")<br/>@Translate("headline2")</h1>
+	}
+	else
+	{
+		<h1>@Translate("headline1new")</h1>
+	}
+	@*<h2>@Translate("subheadline")</h2>*@
+</div>
+
+<ul id="slider-container" class="intro-container">
+	<li>
+		<div class="slider-item">
+			<div class="content-container">
+				<div class="left"><img src="/Images/blank.png" style="width:100%;height:1px;" id="video-blank"/><div class="video-container" id="intro-video"></div></div><div class="right">
+					                                                                                                                                                          <h3>@Translate("perzy-headline")</h3>
+					                                                                                                                                                          <p>@Translate("perzy-text")</p>
+					                                                                                                                                                          @if (!IsCompetitionExpired)
+					                                                                                                                                                          {
+						                                                                                                                                                          <h3 class="link" onclick=" slider.goToSlide(1); ">@Translate("gewinn-hl")</h3>
+						                                                                                                                                                          <ul>
+							                                                                                                                                                          <li><span>@Translate("gewinn-list1")</span></li>
+							                                                                                                                                                          <li><span>@Translate("gewinn-list2")</span></li>
+						                                                                                                                                                          </ul>
+					                                                                                                                                                          }
+				                                                                                                                                                          </div>
+			</div>
+		</div>
+	</li>
+	@if (!IsCompetitionExpired)
+	{
+		<li>
+			<div class="slider-item">
+				<div class="content-container">
+					<div class="left"><img src="/Images/intro-content.png"/></div><div class="right">
+						                                                              <h3>@Translate("preise-headline")</h3>
+						                                                              <p>@Translate("preise-text1")<br/><br />@Translate("preise-text2")</p>
+						                                                              <ul style="margin-bottom: 10px;">
+							                                                              <li><span>@Translate("preise-bullet1")</span></li>
+							                                                              <li><span>@Translate("preise-bullet2")</span></li>
+							                                                              <li><span>@Translate("preise-bullet3")</span></li>
+							                                                              <li><span>@Translate("preise-bullet4")</span></li>
+							                                                              <li><span>@Translate("preise-bullet5")</span></li>
+							                                                              <li><span>@Translate("preise-bullet6")</span></li>
+						                                                              </ul>
+					                                                              </div>
+				</div>			
+			</div>
+		</li>
+	}
+	<li>
+		<div class="slider-item">
+			<div class="content-container">
+				<div class="left">
+					<div class="intro-hashtag-container"></div>
+					<div class="intro-hashtag-loading">loading ...</div>
+				</div><div class="right">
+					      <h3>@Translate("hashtag-headline")</h3>
+					      <p>@string.Format(Translate("hashtag-text"), @UserCount, @CountryCount)</p>
+					@if (!IsCompetitionExpired)
+					{
+						<h3  class="link" onclick=" slider.goToSlide(1); ">@Translate("gewinn-hl")</h3>
+						<ul>
+							<li><span>@Translate("gewinn-list1")</span></li>
+							<li><span>@Translate("gewinn-list2")</span></li>
+						</ul>
+					}
+				      </div>
+			</div>			
+		</div>
+	</li>
+	<li>
+		<div class="slider-item">
+			<div class="content-container">
+				<div class="left"><img src="/Images/intro-buchen.png"/></div><div class="right">
+					                                                             <h3>@Translate("package-headline")</h3>
+					                                                             <h3>@Translate("package-subline")</h3>
+					                                                             <p class="important">@Translate("package-leistungen")</p>
+					                                                             <ul style="margin-bottom: 10px;">
+						                                                             <li><span>@Translate("package-leistung1")</span></li>
+						                                                             <li><span>@Translate("package-leistung2")</span></li>
+						                                                             <li><span>@Translate("package-leistung3")</span></li>
+						                                                             <li><span>@Translate("package-leistung4")</span></li>
+					                                                             </ul>
+					                                                             <p>@Translate("package-preis")<br/><a href="@Translate("package-link")" target="_blank" style="color:#e3000e;">@Translate("package-buchen")</a></p>
+				                                                             </div>
+			</div>			
+		</div>
+	</li>
+</ul>
+
+<div class="max-width center" style="margin: 20px 0 45px 0;">
+	@if (Convert.ToBoolean(ViewBag.IsOnMap))
+	{
+		<a href="javascript:void(0);" class="link-btn" style="width: 300px; margin: 20px 0;" onclick="_gaq.push(['_trackEvent', 'zurueck-zum-kalender', 'clicked']);hideIntroOnMap();">@Translate("zurueck-zum-kalender")</a>
+	}
+	else
+	{
+		<a href="javascript:void(0);" class="link-btn" style="width: 300px; margin: 20px 0;" onclick="setMediaPixel('568025');_gaq.push(['_trackEvent', 'los-gehts', 'clicked']);bbqLink('Register', 'f');">@Translate("btn-losgehts")</a>
+	}
+</div>
